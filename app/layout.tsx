@@ -1,8 +1,9 @@
 import type React from "react"
 import ClientLayout from "./client-layout"
-import './globals.css'
 import Script from "next/script"
 import { Montserrat, Poppins } from "next/font/google"
+import { CSSOptimizer } from "@/components/css-optimizer"
+import { PerformanceMonitor } from "@/components/performance-monitor"
 
 // Initialize the fonts with display swap for better performance
 const montserrat = Montserrat({
@@ -33,7 +34,19 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+        {/* Critical CSS optimization */}
+        <CSSOptimizer />
+        
+        {/* Defer Font Awesome CSS loading */}
+        <link 
+          rel="preload" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+          as="style" 
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+        </noscript>
 
         <Script
           id="organization-jsonld"
@@ -70,6 +83,7 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.className} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
+        <PerformanceMonitor />
       </body>
     </html>
   )

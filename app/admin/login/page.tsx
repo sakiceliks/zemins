@@ -129,7 +129,7 @@ async function handleLogin(e: React.FormEvent) {
               <Input
                 id="email"
                 type="email"
-                placeholder="admin@dalzemin.com"
+                placeholder="admin@zeminustasi.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

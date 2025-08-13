@@ -7,7 +7,9 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "optimize-images": "node scripts/optimize-images.js"
+    "optimize-images": "node scripts/optimize-images.js",
+    "extract-critical-css": "node scripts/extract-critical-css.js",
+    "build:optimized": "npm run extract-critical-css && npm run optimize-images && npm run build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
