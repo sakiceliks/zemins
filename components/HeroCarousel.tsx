@@ -133,9 +133,8 @@ function CarouselDots({ count, activeIndex, onClick }: {
     <div className="absolute hidden bottom-8 left-1/2 -translate-x-1/2 md:left-6 md:translate-x-0 md:left-20 lg:left-32 z-20 sm:flex gap-2">
       {Array.from({ length: count }).map((_, index) => (
         <Button
-        id="dotbutton"
           key={index}
-          className={`h1 w-1 md:h-1 md:w-1 rounded-full transition-colors duration-300 ${
+          className={`h-1 w-1 md:h-1 md:w-1 rounded-full transition-colors duration-300 ${
             index === activeIndex ? "bg-orange-500" : "bg-white/50"
           }`}
           onClick={() => onClick(index)}
