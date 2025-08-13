@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowRight, CheckCircle, ChevronRight, Eye, Lightbulb, HardHat, Hammer, Compass, Target } from "lucide-react"
+import { OptimizedImage } from './optimized-image'
 import { motion } from "framer-motion"
 import { AnimatedButton } from "@/components/ui/animated-button"
 import { HoverButton } from "@/components/ui/hover-button"
@@ -23,7 +23,7 @@ export default function ClientComponents() {
       <section className="relative w-full overflow-hidden h-screen">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
+          <OptimizedImage
             src="/images/hero-1.png"
             alt="Construction site background"
             fill
