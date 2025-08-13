@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Plus, Settings, BarChart3, Users, FileText, FolderOpen, Shield, ShieldOff } from "lucide-react"
+import { Plus, Settings, BarChart3, Users, FileText, FolderOpen, Shield, ShieldOff, Image } from "lucide-react"
 import Link from "next/link"
 import { useAdminAuth } from "@/hooks/use-admin-auth"
 import { useAdminSettings } from "@/contexts/admin-settings-context"
@@ -96,8 +96,9 @@ export default function AdminDashboard() {
 
         {/* Main Content */}
         <Tabs defaultValue="services" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="services">Hizmetler</TabsTrigger>
+            <TabsTrigger value="hero-carousel">Hero Carousel</TabsTrigger>
             <TabsTrigger value="projects">Projeler</TabsTrigger>
             <TabsTrigger value="content">İçerik</TabsTrigger>
             <TabsTrigger value="team">Ekip</TabsTrigger>
@@ -212,6 +213,46 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        <TabsContent value="hero-carousel" className="space-y-6">
+          <h2 className="text-2xl font-bold">Hero Carousel Yönetimi</h2>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle>Carousel Öğeleri</CardTitle>
+              <CardDescription>
+                Ana sayfa hero carousel'ini yönetin. Resimler, başlıklar ve butonları düzenleyin.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Link href="/admin/hero-carousel">
+                  <Button variant="outline" className="w-full justify-start">
+                    <Image className="mr-2 h-4 w-4" />
+                    Hero Carousel Yönetimi
+                  </Button>
+                </Link>
+                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <Image className="h-5 w-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-blue-900 dark:text-blue-100">
+                        Hero Carousel Özellikleri
+                      </p>
+                      <ul className="text-sm text-blue-700 dark:text-blue-300 mt-2 space-y-1">
+                        <li>• Resim yükleme ve yönetimi</li>
+                        <li>• Başlık, alt başlık ve açıklama düzenleme</li>
+                        <li>• Buton metni ve linki ayarlama</li>
+                        <li>• Sıralama ve aktif/pasif durumu</li>
+                        <li>• Gerçek zamanlı önizleme</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="team" className="space-y-6">
