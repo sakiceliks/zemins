@@ -1,15 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, CheckCircle, ChevronRight, Eye, Lightbulb, HardHat, Hammer, Compass, Target } from "lucide-react"
-import { OptimizedImage } from './optimized-image'
-import { motion } from "framer-motion"
+import { ChevronRight } from "lucide-react"
 import { AnimatedButton } from "@/components/ui/animated-button"
 import { HoverButton } from "@/components/ui/hover-button"
 import { FadeIn } from "@/components/animations/fade-in"
-import { StaggerIn } from "@/components/animations/stagger-in"
-import { ScaleIn } from "@/components/animations/scale-in"
-import { HoverCard } from "@/components/animations/hover-card"
 import { CountUp } from "@/components/animations/count-up"
 import { ScrollProgress } from "@/components/animations/scroll-progress"
 import { HeroCarousel } from "@/components/HeroCarousel"
@@ -21,41 +16,101 @@ export default function ClientComponents() {
     <div className="flex min-h-screen flex-col">
       <ScrollProgress />
 
-      {/* Hero Section with Static Background Image */}
+      {/* JSON-LD for LocalBusiness */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "Organization"],
+            "name": "BMÇ Zemin - Üsküdar Beton Silimi ve Parlatma",
+            "alternateName": [
+              "Üsküdar Beton Silimi",
+              "Üsküdar Beton Parlatma",
+              "İstanbul Zemin Hizmetleri"
+            ],
+            "url": "https://zeminustasi.com.tr",
+            "logo": "https://zeminustasi.com.tr/logo.png",
+            "image": [
+              "https://zeminustasi.com.tr/images/beton-silimi.jpg",
+              "https://zeminustasi.com.tr/images/beton-parlatma.jpg"
+            ],
+            "description": "Zeminlerinizde estetiği ve dayanıklılığı bir araya getiren profesyonel çözümler sunuyoruz. Üsküdar ve İstanbul bölgesinde beton silimi, parlatma ve yüzey düzeltme hizmetleri.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Fatih, Sayfiye Sk. No:24 D:3",
+              "addressLocality": "Üsküdar",
+              "addressRegion": "İstanbul",
+              "postalCode": "34920",
+              "addressCountry": "TR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 41.0221,
+              "longitude": 29.0236
+            },
+            "telephone": "+90 531 281 29 58",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Zemin Kaplama ve Parlatma Hizmetleri",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Beton Silimi",
+                    "description": "Her zemine özel pürüzsüz ve dayanıklı beton silimi hizmeti."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Beton Parlatma",
+                    "description": "Zeminlerin estetik görünümünü artıran yüksek parlaklıkta beton parlatma."
+                  }
+                }
+              ]
+            },
+            "founder": {
+              "@type": "Person",
+              "name": "Ümit Kesik"
+            },
+            "foundingDate": "2010",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "value": "15"
+            }
+          })
+        }}
+      />
+
+      {/* Hero Section */}
       <section className="relative w-full overflow-hidden h-screen">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <OptimizedImage
-            src="/images/hero-1.png"
-            alt="Construction site background"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-            quality={90}
-          />
-        </div>
-
-        {/* Dark Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50 z-10" />
-
-        {/* Hero Content */}
-       <HeroCarousel/>
+        <HeroCarousel />
       </section>
 
-      {/* Rest of the page content remains the same */}
-      {/* Mission & Vision Section */}
-  <ServicesSection/>
+      {/* Services Section */}
+      <ServicesSection />
 
       {/* Features Section */}
       <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-12 text-foreground">Faaliyet Alanlarımız</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ServicesCard />
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl font-bold text-center mb-6 text-foreground">
+            Zeminlerinizde Estetiği ve Dayanıklılığı Bir Araya Getiriyoruz
+          </h1>
+          <p className="text-center text-gray-700 dark:text-gray-300 mb-12">
+            Her Zeminin Özel Çözümü. Profesyonel zemin kaplamaları hizmetimizle yaşam alanlarınızı yeniden şekillendiriyoruz.
+            Sektördeki deneyimimiz ve uzman ekibimizle her projeye özel çözümler sunarak, beklentilerinizi en üst düzeyde karşılıyoruz.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ServicesCard />
+          </div>
         </div>
       </div>
-    </div>      {/* Stats Section */}
+
+      {/* Stats Section */}
       <section className="py-10 md:py-16 bg-amber-500 dark:bg-amber-600">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 text-center max-w-5xl mx-auto">
@@ -64,7 +119,9 @@ export default function ClientComponents() {
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
                   <CountUp end={500} suffix="+" />
                 </div>
-                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">Tamamlanan Projeler</p>
+                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">
+                  Tamamlanan Projeler
+                </p>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.2}>
@@ -72,7 +129,9 @@ export default function ClientComponents() {
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
                   <CountUp end={25} suffix="+" />
                 </div>
-                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">Yıllık Deneyim</p>
+                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">
+                  Yıllık Deneyim
+                </p>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.3}>
@@ -80,7 +139,9 @@ export default function ClientComponents() {
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
                   <CountUp end={150} suffix="+" />
                 </div>
-                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">Uzman Ekip Üyeleri</p>
+                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">
+                  Uzman Ekip Üyeleri
+                </p>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.4}>
@@ -88,7 +149,9 @@ export default function ClientComponents() {
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1 md:mb-2">
                   <CountUp end={98} suffix="%" />
                 </div>
-                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">Müşteri Memnuniyeti</p>
+                <p className="text-black dark:text-gray-100 font-medium text-sm md:text-base">
+                  Müşteri Memnuniyeti
+                </p>
               </div>
             </FadeIn>
           </div>
@@ -100,10 +163,11 @@ export default function ClientComponents() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <FadeIn>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-              İnşaat Projenizi Başlatmaya Hazır mısınız?
+              Üsküdar Beton Projenizi Başlatmaya Hazır mısınız?
             </h2>
             <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl sm:max-w-2xl mx-auto mb-6 md:mb-10">
-              Ücretsiz danışmanlık ve teklif için bugün bizimle iletişime geçin. Ekibimiz vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmeye hazır.
+              Ücretsiz danışmanlık ve teklif için bugün bizimle iletişime geçin.
+              Ekibimiz vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmeye hazır.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/contact" className="w-full sm:w-auto">

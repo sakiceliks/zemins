@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             {/* Project Content */}
-            <div 
+ <div 
               className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300"
               dangerouslySetInnerHTML={{ __html: project.content }}
             />
