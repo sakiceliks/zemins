@@ -111,32 +111,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             {/* Project Content */}
- <div 
-              className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300"
-              dangerouslySetInnerHTML={{ __html: project.content }}
-            />
+{/* Project Content */}
+<div 
+  className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300"
+  dangerouslySetInnerHTML={{ __html: project.content }}
+/>
 
-            {/* CTA Section */}
-            <div className="mt-16 bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl text-center">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                Benzer Bir Proje mi İstiyorsunuz?
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Bu projeye benzer çalışmalar için bizimle iletişime geçin ve ücretsiz keşif hizmeti alın.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
-                  <Button className="bg-amber-500 hover:bg-amber-600 text-white">
-                    Ücretsiz Keşif
-                  </Button>
-                </Link>
-                <Link href="/projects">
-                  <Button variant="outline">
-                    Diğer Projeler
-                  </Button>
-                </Link>
-              </div>
-            </div>
+{/* Güçlü SEO link */}
+<div className="mt-10 p-6 bg-amber-50 dark:bg-gray-800 rounded-xl text-center">
+  <h4 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+    Zeminleriniz için Profesyonel Çözümler
+  </h4>
+  <p className="text-gray-700 dark:text-gray-300 mb-4">
+    Eğer Üsküdar’da beton silimi veya beton parlatma hizmeti arıyorsanız, 
+    <Link 
+      href="/uskudar-beton-silimi-parlatma" 
+      className="text-amber-600 dark:text-amber-400 font-semibold underline hover:text-amber-700"
+    >
+      BMÇ Zemin profesyonel çözümlerini inceleyebilirsiniz
+    </Link>.
+  </p>
+  <Link href="/uskudar-beton-silimi-parlatma">
+    <Button className="bg-amber-500 hover:bg-amber-600 text-white">
+      Hizmet Detayları
+    </Button>
+  </Link>
+</div>
+
           </div>
         </div>
       </section>
