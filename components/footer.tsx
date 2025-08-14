@@ -6,7 +6,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
   const servicesList = services || []
 
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-gray-900 p-6 text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent"></div>
       </div>
@@ -14,7 +14,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
       <div className="container relative z-10 py-12 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 gap-8 md:gap-12 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
           {/* Company Info */}
-          <div className="text-center sm:text-left lg:col-span-1">
+          <div className="text-left lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
               <div className="p-2 bg-amber-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
                 <HardHat className="h-8 w-8 text-gray-900" />
@@ -47,7 +47,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
           </div>
 
           {/* Services */}
-          <div className="text-center sm:text-left">
+          <div className="text-left">
             <h3 className="text-xl font-semibold mb-6 text-white relative">
               Hizmetlerimiz
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-amber-500 rounded-full"></div>
@@ -68,7 +68,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
           </div>
 
           {/* Quick Links */}
-          <div className="text-center sm:text-left">
+          <div className="text-left">
             <h3 className="text-xl font-semibold mb-6 text-white relative">
               Hızlı Bağlantılar
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-amber-500 rounded-full"></div>
@@ -96,7 +96,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
           </div>
 
           {/* Contact Info */}
-          <div className="text-center sm:text-left">
+          <div className="text-left">
             <h3 className="text-xl font-semibold mb-6 text-white relative">
               İletişim Bilgileri
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-amber-500 rounded-full"></div>

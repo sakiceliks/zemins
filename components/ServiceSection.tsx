@@ -43,13 +43,13 @@ export default function ServicesSection() {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Faaliyet
                 <br />
                 Alanlarımız
               </h1>
 
-              <div className="space-y-4 text-gray-700 text-lg leading-relaxed max-w-lg">
+              <div className="space-y-4 text-gray-100 text-lg leading-relaxed max-w-lg">
                 <p>
                   Beton Zemin Çözümleri, beton uygulamalarını ve betona zemine uygulanabilecek diğer alternatif
                   uygulamaları kapsayan geniş bir konudur.

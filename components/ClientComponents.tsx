@@ -11,6 +11,7 @@ import { ScrollProgress } from "@/components/animations/scroll-progress";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import ServicesSection from "./ServiceSection";
 import { ServicesCard } from "./ServicesCard";
+import EpoxyVisualizer from "./EpoxyVisualizer";
 
 export default function ClientComponents() {
   return (
@@ -79,7 +80,7 @@ export default function ClientComponents() {
 
       {/* Services Section */}
       <ServicesSection />
-
+<EpoxyVisualizer/>
       {/* Features Section */}
       <div className="min-h-screen bg-background p-8">
         <div className="max-w-6xl mx-auto">
