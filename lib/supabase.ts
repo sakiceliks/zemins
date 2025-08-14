@@ -16,6 +16,9 @@ export interface Service {
   featured: boolean
   meta_title?: string
   meta_description?: string
+  feature?: string
+  features?: string[] // Özellikler array'i eklendi
+  short_description?: string
   created_at: string
   updated_at: string
 }
@@ -562,16 +565,16 @@ export function generateServiceJsonLd(service: Service) {
     "description": service.description,
     "provider": {
       "@type": "Organization",
-      "name": "BuildMaster İnşaat",
-      "url": "https://buildmaster.com"
+      "name": "Zemin Ustası",
+      "url": "https://BMÇ Zemin.com"
     },
     "areaServed": "Türkiye",
     "serviceType": "İnşaat Hizmeti",
     "image": service.image,
-    "url": `https://buildmaster.com/hizmetler/${service.slug}`,
+    "url": `https://BMÇ Zemin.com/hizmetler/${service.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://buildmaster.com/hizmetler/${service.slug}`
+      "@id": `https://BMÇ Zemin.com/hizmetler/${service.slug}`
     }
   }
 }
@@ -584,18 +587,18 @@ export function generateProjectJsonLd(project: Project) {
     "description": project.description,
     "creator": {
       "@type": "Organization",
-      "name": "BuildMaster İnşaat",
-      "url": "https://buildmaster.com"
+      "name": "Zemin Ustası",
+      "url": "https://BMÇ Zemin.com"
     },
     "location": {
       "@type": "Place",
       "name": project.location || "İstanbul, Türkiye"
     },
     "image": project.image,
-    "url": `https://buildmaster.com/projeler/${project.slug}`,
+    "url": `https://BMÇ Zemin.com/projeler/${project.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://buildmaster.com/projeler/${project.slug}`
+      "@id": `https://BMÇ Zemin.com/projeler/${project.slug}`
     },
     "dateCreated": project.created_at,
     "dateModified": project.updated_at,
@@ -607,13 +610,13 @@ export function generateOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "BuildMaster İnşaat",
-    "url": "https://buildmaster.com",
-    "logo": "https://buildmaster.com/logo.png",
+    "name": "Zemin Ustası",
+    "url": "https://BMÇ Zemin.com",
+    "logo": "https://BMÇ Zemin.com/logo.png",
     "description": "Yenilikçi inşaat çözümleri için güvenilir ortağınız",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 BuildMaster Cad., İnşaat Mahallesi",
+      "streetAddress": "123 BMÇ Zemin Cad., İnşaat Mahallesi",
       "addressLocality": "İstanbul",
       "postalCode": "34000",
       "addressCountry": "TR"
@@ -622,12 +625,12 @@ export function generateOrganizationJsonLd() {
       "@type": "ContactPoint",
       "telephone": "(0212) 456-7890",
       "contactType": "customer service",
-      "email": "info@buildmaster.com"
+      "email": "info@BMÇ Zemin.com"
     },
     "sameAs": [
-      "https://facebook.com/buildmaster",
-      "https://instagram.com/buildmaster",
-      "https://linkedin.com/company/buildmaster"
+      "https://facebook.com/BMÇ Zemin",
+      "https://instagram.com/BMÇ Zemin",
+      "https://linkedin.com/company/BMÇ Zemin"
     ]
   }
 }

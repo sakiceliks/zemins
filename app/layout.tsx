@@ -21,8 +21,8 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  title: "BuildMaster İnşaat - Kaliteli İnşaat Hizmetleri",
-  description: "BuildMaster İnşaat olarak konut, ticari ve endüstriyel projeler için kapsamlı inşaat hizmetleri sunuyoruz.",
+  title: "Zemin Ustası - Kaliteli İnşaat Hizmetleri",
+  description: "Zemin Ustası olarak konut, ticari ve endüstriyel projeler için kapsamlı inşaat hizmetleri sunuyoruz.",
   generator: 'v0.dev'
 }
 
@@ -38,12 +38,7 @@ export default function RootLayout({
         <CSSOptimizer />
         
         {/* Defer Font Awesome CSS loading */}
-        <link 
-          rel="preload" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
-          as="style" 
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
+       
         <noscript>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
         </noscript>
@@ -55,27 +50,27 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "BuildMaster İnşaat",
-              "url": "https://buildmaster.com",
-              "logo": "https://buildmaster.com/logo.png",
+              "name": "Zemin Ustası",
+              "url": "https://zeminustasi.com.tr",
+              "logo": "https://zeminustasi.com.tr/logo.png",
               "description": "Yenilikçi inşaat çözümleri için güvenilir ortağınız",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "123 BuildMaster Cad., İnşaat Mahallesi",
+                "streetAddress": "Fatih, Sayfiye Sk. No:24 D:3, 34920 Sultanbeyli",
                 "addressLocality": "İstanbul",
-                "postalCode": "34000",
+                "postalCode": "34920",
                 "addressCountry": "TR"
               },
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "(0212) 456-7890",
+                "telephone": "(0531) 281-2958",
                 "contactType": "customer service",
-                "email": "info@buildmaster.com"
+                "email": "info@zeminustasi.com.tr"
             },
               "sameAs": [
-                "https://facebook.com/buildmaster",
-                "https://instagram.com/buildmaster",
-                "https://linkedin.com/company/buildmaster"
+                "https://facebook.com/bmczemin",
+                "https://instagram.com/bmczemin",
+                "https://linkedin.com/company/bmczemin"
               ]
             })
           }}

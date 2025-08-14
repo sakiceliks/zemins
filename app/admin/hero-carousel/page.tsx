@@ -101,7 +101,7 @@ export default function HeroCarouselAdmin() {
       image_url: item.image_url,
       image_alt: item.image_alt || '',
       button_text: item.button_text || '',
-      button_link: item.link || '',
+      button_link: item.button_link || '',
       order_index: item.order_index,
       is_active: item.is_active
     });
@@ -316,14 +316,14 @@ export default function HeroCarouselAdmin() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label>Resim *</Label>
-              <ImageUpload
-                onUpload={handleImageUpload}
-                currentImage={formData.image_url}
-                folder="hero-carousel"
-              />
-            </div>
+                         <div className="space-y-2">
+               <Label>Resim *</Label>
+               <ImageUpload
+                 value={formData.image_url}
+                 onChange={handleImageUpload}
+                 folder="hero-carousel"
+               />
+             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">

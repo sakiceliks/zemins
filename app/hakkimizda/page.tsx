@@ -5,9 +5,9 @@ import { ArrowRight, CheckCircle, Award, Clock, Target, Eye, Lightbulb, Compass,
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "Hakkımızda | BuildMaster İnşaat",
+  title: "Hakkımızda | Zemin Ustası",
   description:
-    "BuildMaster İnşaat'ın tarihini, değerlerini ve inşaatta mükemmelliğe adanmış uzman ekibimizi öğrenin.",
+    "Zemin Ustası'ın tarihini, değerlerini ve inşaatta mükemmelliğe adanmış uzman ekibimizi öğrenin.",
 }
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/60 z-10" />
         <Image src="/images/about-team.png" alt="İnşaat ekibi" fill className="object-cover" priority />
         <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">BuildMaster Hakkında</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">BMÇ Zemin Hakkında</h1>
           <p className="text-xl text-white/90 max-w-2xl">
             Yenilik, kaliteli ustalık ve müşterilerimize karşı sarsılmaz bağlılıkla mükemmellik inşa ediyoruz.
           </p>
@@ -138,7 +138,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Building a Legacy of Excellence</h2>
               <p className="text-gray-700 dark:text-gray-300 mb-6 text-lg">
-                Founded in 2000, BuildMaster began as a small family-owned construction company with a vision to
+                Founded in 2000, BMÇ Zemin began as a small family-owned construction company with a vision to
                 transform the industry through innovation and quality craftsmanship.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -147,7 +147,7 @@ export default function AboutPage() {
                 excellence, integrity, and client satisfaction.
               </p>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Today, BuildMaster continues to push the boundaries of construction, embracing new technologies and
+                Today, BMÇ Zemin continues to push the boundaries of construction, embracing new technologies and
                 sustainable practices to deliver exceptional results for our clients.
               </p>
               <Link href="/contact">
@@ -289,7 +289,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-4xl font-bold mb-6">Ready to Work With Us?</h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10">
-            Contact us today to discuss your project needs and discover how BuildMaster can bring your vision to life.
+            Contact us today to discuss your project needs and discover how BMÇ Zemin can bring your vision to life.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/contact">
@@ -322,7 +322,7 @@ const teamMembers = [
   {
     name: "Michael Reynolds",
     position: "CEO & Founder",
-    bio: "With over 30 years in construction, Michael founded BuildMaster with a vision to transform the industry through innovation and quality.",
+    bio: "With over 30 years in construction, Michael founded BMÇ Zemin with a vision to transform the industry through innovation and quality.",
     image: "/images/team-1.png",
     social: [
       { icon: Linkedin, url: "#" },

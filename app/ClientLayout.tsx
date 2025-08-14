@@ -7,7 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Montserrat, Poppins } from "next/font/google"
 import { AnimatePresence, motion } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { Suspense, useState } from "react"
+import GoogleAnalytics from "@/components/GoogleAnalystic"
 
 // Initialize the fonts with display swap for better performance
 const montserrat = Montserrat({
@@ -35,9 +36,12 @@ export default function ClientLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body className={`${poppins.className} antialiased`}>
+      <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
-      <Navbar setIsMenuOpen={setIsMenuOpen} />
+            <Navbar services={services} />
             <AnimatePresence mode="wait">
               <motion.main
                 key={pathname}

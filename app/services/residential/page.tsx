@@ -5,9 +5,9 @@ import { ArrowRight, CheckCircle, Home, Hammer, Ruler } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "Residential Construction | BuildMaster Construction",
+  title: "Residential Construction | BMÇ Zemin Construction",
   description:
-    "Explore BuildMaster's residential construction services including custom homes, renovations, and additions.",
+    "Explore BMÇ Zemin's residential construction services including custom homes, renovations, and additions.",
 }
 
 export default function ResidentialServicePage() {
@@ -35,7 +35,7 @@ export default function ResidentialServicePage() {
               </div>
               <h2 className="text-4xl font-bold mb-6">Creating Spaces You'll Love to Call Home</h2>
               <p className="text-gray-700 mb-6 text-lg">
-                At BuildMaster, we understand that your home is more than just a building—it's where memories are made
+                At BMÇ Zemin, we understand that your home is more than just a building—it's where memories are made
                 and lives are lived. That's why we approach each residential project with care, precision, and a
                 commitment to excellence.
               </p>
@@ -242,7 +242,7 @@ export default function ResidentialServicePage() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-4xl font-bold mb-6">Ready to Build Your Dream Home?</h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10">
-            Contact us today for a free consultation and discover how BuildMaster can bring your residential vision to
+            Contact us today for a free consultation and discover how BMÇ Zemin can bring your residential vision to
             life.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -355,7 +355,7 @@ const testimonials = [
     name: "Emily & David Thompson",
     project: "Custom Home Build",
     quote:
-      "BuildMaster turned our dream home into reality. Their attention to detail and commitment to quality exceeded our expectations. We couldn't be happier with our new home.",
+      "BMÇ Zemin turned our dream home into reality. Their attention to detail and commitment to quality exceeded our expectations. We couldn't be happier with our new home.",
     avatar: "/images/testimonial-1.png",
   },
   {

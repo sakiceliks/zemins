@@ -6,9 +6,9 @@ import { ArrowRight, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "Hizmetlerimiz | BuildMaster İnşaat",
+  title: "Hizmetlerimiz | Zemin Ustası",
   description:
-    "Konut, ticari, endüstriyel ve mimari tasarım çözümleri dahil olmak üzere BuildMaster'ın kapsamlı inşaat hizmetlerini keşfedin.",
+    "Konut, ticari, endüstriyel ve mimari tasarım çözümleri dahil olmak üzere BMÇ Zemin'ın kapsamlı inşaat hizmetlerini keşfedin.",
 }
 
 export default async function ServicesPage() {
@@ -141,9 +141,9 @@ export default async function ServicesPage() {
               <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-3 md:mb-4">
                 Why Choose Us
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6">BuildMaster Farkı</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6">BMÇ Zemin Farkı</h2>
               <p className="text-base md:text-lg text-gray-700 mb-5 md:mb-8">
-                BuildMaster'ı seçtiğinizde, mükemmellik, yenilik ve tam memnuniyetinize bağlı bir ortak seçiyorsunuz.
+                BMÇ Zemin'ı seçtiğinizde, mükemmellik, yenilik ve tam memnuniyetinize bağlı bir ortak seçiyorsunuz.
               </p>
               <div className="space-y-4 md:space-y-6">
                 {benefits.map((benefit, index) => (
@@ -166,7 +166,7 @@ export default async function ServicesPage() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Projenizi Başlatmaya Hazır mısınız?</h2>
           <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto mb-6 md:mb-10">
-            Ücretsiz danışmanlık için bugün bizimle iletişime geçin ve BuildMaster'ın vizyonunuzu nasıl hayata geçirebileceğini keşfedin.
+            Ücretsiz danışmanlık için bugün bizimle iletişime geçin ve BMÇ Zemin'ın vizyonunuzu nasıl hayata geçirebileceğini keşfedin.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link href="/contact">

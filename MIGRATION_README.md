@@ -108,7 +108,7 @@ CREATE TABLE site_settings (
 
 ### Varsayılan Site Ayarları
 
-- **Şirket Adı**: BuildMaster İnşaat
+- **Şirket Adı**: Zemin Ustası
 - **Açıklama**: Yenilikçi inşaat çözümleri için güvenilir ortağınız
 - **Adres**: İstanbul, İnşaat Mahallesi
 - **Çalışma Saatleri**: Pazartesi-Cuma 08:00-17:00, Cumartesi 09:00-14:00

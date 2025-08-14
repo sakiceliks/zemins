@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { getServices, deleteService, type Service } from "@/lib/supabase"
+import { deleteService, type Service } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -21,42 +21,35 @@ import {
 import { Plus, Edit, Trash2, ArrowLeft, Eye } from "lucide-react"
 import { useAdminAuth } from "@/hooks/use-admin-auth"
 import { useAdminSettings } from "@/contexts/admin-settings-context"
+import { useServices } from "@/contexts/services-context"
 
 export default function AdminServices() {
-  const [services, setServices] = useState<Service[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const { settings } = useAdminSettings()
   const { user, isUserAdmin, loading: authLoading } = useAdminAuth({
     enabled: settings.authCheckEnabled
   })
+  const { services, refreshServices } = useServices()
 
   useEffect(() => {
     if (!authLoading) {
-      loadServices()
+      // Services context'ten otomatik olarak yükleniyor
     }
   }, [authLoading])
 
-  async function loadServices() {
+  async function handleDelete(id: string) {
     try {
-      const data = await getServices()
-      setServices(data)
+      setLoading(true)
+      await deleteService(id)
+      await refreshServices() // Context'ten yenile
     } catch (error) {
-      console.error('Error loading services:', error)
+      console.error('Error deleting service:', error)
     } finally {
       setLoading(false)
     }
   }
 
-  async function handleDelete(id: string) {
-    try {
-      await deleteService(id)
-      await loadServices()
-    } catch (error) {
-      console.error('Error deleting service:', error)
-    }
-  }
-
-  if (authLoading || loading) {
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-amber-500"></div>

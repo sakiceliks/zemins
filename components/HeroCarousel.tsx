@@ -114,6 +114,9 @@ export function HeroCarousel() {
         />
       ))}
 
+      {/* Black Solid Overlay */}
+      <div className="absolute inset-0 z-10 bg-black/70"></div>
+
       {/* Hero Content */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center h-screen px-6 md:px-20 lg:px-32">
         {activeSlide.subtitle && (
@@ -124,7 +127,7 @@ export function HeroCarousel() {
             </span>
           </div>
         )}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 max-w-3xl">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight mb-6 max-w-3xl">
           {activeSlide.title}
         </h1>
         {activeSlide.description && (
@@ -161,24 +164,26 @@ export function HeroCarousel() {
 function CarouselArrows({ onPrev, onNext }: { onPrev: () => void, onNext: () => void }) {
   return (
     <>
-      <Button
+     <div className="hidden sm:flex">
+     <Button
         variant="ghost"
         size="icon"
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 text-white rounded-full h-10 w-10 md:h-12 md:w-12"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-white/20 hover:bg-white/30 text-white rounded-full h-12 w-12 md:h-14 md:w-14 backdrop-blur-sm"
         onClick={onPrev}
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+        <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 text-white rounded-full h-10 w-10 md:h-12 md:w-12"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-white/20 hover:bg-white/30 text-white rounded-full h-12 w-12 md:h-14 md:w-14 backdrop-blur-sm"
         onClick={onNext}
         aria-label="Next slide"
       >
-        <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+        <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
       </Button>
+     </div>
     </>
   )
 }
@@ -189,12 +194,14 @@ function CarouselDots({ count, activeIndex, onClick }: {
   onClick: (index: number) => void 
 }) {
   return (
-    <div className="absolute hidden bottom-8 left-1/2 -translate-x-1/2 md:left-6 md:translate-x-0 md:left-20 lg:left-32 z-20 sm:flex gap-2">
+    <div className="absolute bottom-8 left-8 z-40 hidden sm:flex gap-2">
       {Array.from({ length: count }).map((_, index) => (
         <Button
           key={index}
-          className={`h-1 w-1 md:h-1 md:w-1 rounded-full transition-colors duration-300 ${
-            index === activeIndex ? "bg-orange-500" : "bg-white/50"
+          className={`h-1.5 w-1.5 md:h-2 md:w-2 rounded-full transition-all duration-300 hover:scale-110 ${
+            index === activeIndex 
+              ? "bg-orange-500 shadow-lg shadow-orange-500/50" 
+              : "bg-white/50 hover:bg-white/70"
           }`}
           onClick={() => onClick(index)}
           aria-label={`Go to slide ${index + 1}`}

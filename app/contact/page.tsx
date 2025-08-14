@@ -4,9 +4,9 @@ import { Mail, MapPin, Phone, Clock, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "İletişim | BuildMaster İnşaat",
+  title: "İletişim | Zemin Ustası",
   description:
-    "Sorularınız, teklifleriniz veya inşaat proje ihtiyaçlarınızı görüşmek için BuildMaster İnşaat ile iletişime geçin.",
+    "Sorularınız, teklifleriniz veya inşaat proje ihtiyaçlarınızı görüşmek için Zemin Ustası ile iletişime geçin.",
 }
 
 export default function ContactPage() {
@@ -43,7 +43,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">Adresimiz</h3>
-                    <p className="text-gray-700">123 BuildMaster Cad., İnşaat Mahallesi, İstanbul 34000</p>
+                    <p className="text-gray-700">123 BMÇ Zemin Cad., İnşaat Mahallesi, İstanbul 34000</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -61,7 +61,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">E-posta Adresi</h3>
-                    <p className="text-gray-700">info@buildmaster.com</p>
+                    <p className="text-gray-700">info@BMÇ Zemin.com</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -215,8 +215,8 @@ const faqs = [
       "Evet, kapsamlı hizmetimizin bir parçası olarak gerekli tüm izinleri ve düzenleyici onayları ele alıyoruz. Ekibimiz, sorunsuz bir onay süreci sağlamak için yerel yapı kodları ve düzenlemeleri konusunda bilgilidir.",
   },
   {
-    question: "BuildMaster'ı diğer inşaat şirketlerinden ayıran nedir?",
+    question: "BMÇ Zemin'ı diğer inşaat şirketlerinden ayıran nedir?",
     answer:
-      "BuildMaster, kaliteye bağlılığımız, şeffaf iletişimimiz, yenilikçi çözümlerimiz ve zamanında teslimatımızla öne çıkıyor. Geleneksel ustalığı modern teknolojilerle birleştirerek, müşteri beklentilerini aşan olağanüstü sonuçlar sunuyoruz.",
+      "BMÇ Zemin, kaliteye bağlılığımız, şeffaf iletişimimiz, yenilikçi çözümlerimiz ve zamanında teslimatımızla öne çıkıyor. Geleneksel ustalığı modern teknolojilerle birleştirerek, müşteri beklentilerini aşan olağanüstü sonuçlar sunuyoruz.",
   },
 ]
