@@ -30,7 +30,7 @@ export default async function ServicesPage() {
         <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 md:mb-4">Hizmetlerimiz</h1>
           <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-xl sm:max-w-2xl">
-            Özel ihtiyaçlarınıza ve vizyonunuza uyarlanmış kapsamlı inşaat çözümleri.
+            Her zeminin çözümü
           </p>
         </div>
       </section>
@@ -43,11 +43,9 @@ export default async function ServicesPage() {
               Sunduğumuz Hizmetler
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-white">
-              Kapsamlı İnşaat Çözümleri
-            </h2>
+Kapsamlı zemin çözümleri            </h2>
             <p className="text-base md:text-lg text-gray-300">
-              Konseptten tamamlanmaya kadar, vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmek için uçtan uca
-              hizmetler sunuyoruz.
+           Konsept aşamasından projenin tamamlanmasına kadar, zeminle ilgili vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmek için uçtan uca zemin çözümleri sunuyoruz.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 max-w-6xl mx-auto">
@@ -168,7 +166,7 @@ export default async function ServicesPage() {
       <section className="py-12 md:py-20 bg-[#1a1a1a] text-white border-t border-gray-700">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">
-            Projenizi Başlatmaya Hazır mısınız?
+        Zemin projenizi Başlatmaya Hazır mısınız?
           </h2>
           <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto mb-6 md:mb-10">
             Ücretsiz danışmanlık için bugün bizimle iletişime geçin ve BMÇ Zemin'ın vizyonunuzu nasıl hayata
