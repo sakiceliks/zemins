@@ -192,35 +192,31 @@ export default async function ServicesPage() {
 }
 
 
-const processSteps = [
+const processSteps =[
   {
-    title: "İlk Danışmanlık",
-    description:
-      "Vizyonunuzu, gereksinimlerinizi ve bütçe kısıtlamalarınızı anlamak için kapsamlı bir danışmanlıkla başlıyoruz.",
+    "title": "Keşif ve İhtiyaç Belirleme",
+    "description": "Projenin başlangıç aşaması olarak, uygulama yapılacak alanı inceliyor, zeminin mevcut durumunu analiz ediyor ve tüm beklentilerinizi, ihtiyaçlarınızı belirliyoruz."
   },
   {
-    title: "Tasarım & Planlama",
-    description:
-      "Tasarım ekibimiz, her aşamada geri bildiriminizi dahil ederek detaylı planlar ve görselleştirmeler oluşturur.",
+    "title": "Proje Planlama ve Teklif",
+    "description": "Yapılan keşif ve analizlere dayanarak, size özel bir proje planı ve detaylı fiyat teklifi hazırlıyoruz. Bu aşamada, süreç, maliyet ve takvim konusunda şeffaf bir iletişim kuruyoruz."
   },
   {
-    title: "İzinler & Onaylar",
-    description: "Projenizin sorunsuz ilerlemesini sağlamak için gerekli tüm izinleri ve düzenleyici onayları ele alıyoruz.",
+    "title": "Zemin Hazırlığı",
+    "description": "Yeni kaplamanın uzun ömürlü olması için mevcut zemindeki tüm toz, kir, eski kaplama ve pürüzleri gideriyor; zemini uygulama için tamamen hazır hale getiriyoruz."
   },
   {
-    title: "İnşaat",
-    description:
-      "Yetenekli ustalarımız, hassasiyet, kaliteli malzemeler ve detaylara dikkatle projenizi hayata geçirir.",
+    "title": "Uygulama",
+    "description": "Seçilen zemin kaplama malzemesini (Taş Halı, Epoksi vb.) uzman ekiplerimizle titizlikle uyguluyor, malzemenin zemine doğru bir şekilde yayılmasını sağlıyoruz."
   },
   {
-    title: "Kalite Güvencesi",
-    description:
-      "İnşaat süreci boyunca titiz kalite kontrolleri, her şeyin yüksek standartlarımızı karşılamasını sağlar.",
+    "title": "Kuruma ve Son İşlemler",
+    "description": "Uygulama tamamlandıktan sonra, zeminin tam dayanıklılığa ulaşması için belirli bir süre kurumaya bırakıyor ve gerekli koruyucu son kat işlemlerini tamamlıyoruz."
   },
   {
-    title: "Proje Tamamlanması",
-    description: "Tamamlanan projenizi zamanında teslim ediyoruz ve tamamlanmasından sonra bile kapsamlı destek sağlıyoruz.",
-  },
+    "title": "Teslimat ve Kontrol",
+    "description": "Zemin tamamen kullanıma hazır hale geldiğinde son kontrolleri yapıyor ve projenin beklentilerinize uygunluğunu teyit ettikten sonra size teslim ediyoruz."
+  }
 ]
 
 const benefits = [
