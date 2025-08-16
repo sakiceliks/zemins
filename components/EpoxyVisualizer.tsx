@@ -223,9 +223,9 @@ export default function EpoxyVisualizer() {
                         fill
                         className="object-cover rounded-lg hover:scale-105 transition-transform duration-200"
                       />
-                      <div className="absolute bottom-3 left-3 bg-[#ffbf00] text-black px-3 py-2 text-sm rounded-md font-medium">
+                      {/* <div className="absolute bottom-3 left-3 bg-[#ffbf00] text-black px-3 py-2 text-sm rounded-md font-medium">
                         {styleDescription || "Epoxy Zemin"}
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </div>
