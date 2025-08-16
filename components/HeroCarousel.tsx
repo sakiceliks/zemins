@@ -49,7 +49,7 @@ export function HeroCarousel() {
             subtitle: 'Profesyonel ve Güvenilir',
             image_url: '/images/hero-1.png',
             button_text: 'Hizmetlerimizi Keşfedin',
-            button_link: '/services',
+            button_link: '/hizmetler',
             order_index: 1,
             is_active: true
           }

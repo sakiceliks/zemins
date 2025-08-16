@@ -17,9 +17,9 @@ export function Navbar({ services }: NavbarProps) {
 
   const navigationItems = [
     { name: "Ana Sayfa", href: "/" },
-    { name: "Hakkımızda", href: "/about" },
-    { name: "Hizmetler", href: "/services" },
-    { name: "Projeler", href: "/projects" },
+    { name: "Hakkımızda", href: "/hakkimizda" },
+    { name: "Hizmetler", href: "/hizmetler" },
+    { name: "Projeler", href: "/projeler" },
     { name: "İletişim", href: "/contact" }
   ]
 
