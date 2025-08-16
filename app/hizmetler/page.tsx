@@ -84,21 +84,21 @@ export default async function ServicesPage() {
 
 
       {/* Process Section */}
-      <section className="py-12 md:py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 md:mb-16 max-w-3xl mx-auto">
-            <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-3 md:mb-4">
+            <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-3 md:mb-4">
               Sürecimiz
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6">Nasıl Çalışıyoruz</h2>
-            <p className="text-base md:text-lg text-gray-700">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-white">Nasıl Çalışıyoruz</h2>
+            <p className="text-base md:text-lg text-gray-300">
               Akıcı sürecimiz, ilk danışmanlıktan proje tamamlanmasına kadar sorunsuz bir deneyim sağlar.
             </p>
           </div>
           <div className="max-w-5xl mx-auto">
             <div className="relative">
               {/* Vertical line - hidden on mobile, visible on larger screens */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-amber-200 hidden md:block"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-amber-600 hidden md:block"></div>
 
               {/* Process steps - mobile optimized */}
               <div className="space-y-8 md:space-y-12 relative">
@@ -108,15 +108,15 @@ export default async function ServicesPage() {
                     className={`flex flex-col md:flex-row items-center gap-4 md:gap-8 ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}
                   >
                     <div className="md:w-1/2 relative w-full">
-                      <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md relative z-10">
-                        <div className="bg-amber-100 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4">
-                          <span className="text-amber-700 font-bold text-lg md:text-xl">{index + 1}</span>
+                      <div className="bg-[#2a2a2a] p-6 md:p-8 rounded-2xl shadow-md border border-gray-700 relative z-10">
+                        <div className="bg-amber-500 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                          <span className="text-black font-bold text-lg md:text-xl">{index + 1}</span>
                         </div>
-                        <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-4">{step.title}</h3>
-                        <p className="text-gray-700 text-sm sm:text-base">{step.description}</p>
+                        <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-4 text-white">{step.title}</h3>
+                        <p className="text-gray-300 text-sm sm:text-base">{step.description}</p>
                       </div>
                       {/* Circle on the timeline - hidden on mobile */}
-                      <div className="absolute top-1/2 left-0 md:left-auto md:right-0 transform translate-y-[-50%] translate-x-[-50%] md:translate-x-[50%] w-6 h-6 bg-amber-500 rounded-full border-4 border-white z-20 hidden md:block"></div>
+                      <div className="absolute top-1/2 left-0 md:left-auto md:right-0 transform translate-y-[-50%] translate-x-[-50%] md:translate-x-[50%] w-6 h-6 bg-amber-500 rounded-full border-4 border-[#1a1a1a] z-20 hidden md:block"></div>
                     </div>
                     <div className="md:w-1/2 hidden md:block">{/* This div is just for spacing in the timeline */}</div>
                   </div>
@@ -128,10 +128,10 @@ export default async function ServicesPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-[#2a2a2a]">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center max-w-6xl mx-auto">
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl order-2 md:order-1">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl order-2 md:order-1 border border-gray-600">
               <Image
                 src="/images/quality.png"
                 alt="Construction quality"
@@ -141,11 +141,11 @@ export default async function ServicesPage() {
               />
             </div>
             <div className="order-1 md:order-2">
-              <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-3 md:mb-4">
+              <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-3 md:mb-4">
                 Why Choose Us
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6">BMÇ Zemin Farkı</h2>
-              <p className="text-base md:text-lg text-gray-700 mb-5 md:mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-white">BMÇ Zemin Farkı</h2>
+              <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto mb-5 md:mb-8">
                 BMÇ Zemin'ı seçtiğinizde, mükemmellik, yenilik ve tam memnuniyetinize bağlı bir ortak seçiyorsunuz.
               </p>
               <div className="space-y-4 md:space-y-6">
@@ -153,8 +153,8 @@ export default async function ServicesPage() {
                   <div key={index} className="flex items-start">
                     <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-amber-500 mr-2 md:mr-3 mt-0.5 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-base md:text-lg">{benefit.title}</h3>
-                      <p className="text-gray-700 text-sm sm:text-base">{benefit.description}</p>
+                      <h3 className="font-semibold text-base md:text-lg text-white">{benefit.title}</h3>
+                      <p className="text-gray-300 text-sm sm:text-base">{benefit.description}</p>
                     </div>
                   </div>
                 ))}
@@ -165,17 +165,20 @@ export default async function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 bg-gray-900 text-white">
+      <section className="py-12 md:py-20 bg-[#1a1a1a] text-white border-t border-gray-700">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Projenizi Başlatmaya Hazır mısınız?</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">
+            Projenizi Başlatmaya Hazır mısınız?
+          </h2>
           <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto mb-6 md:mb-10">
-            Ücretsiz danışmanlık için bugün bizimle iletişime geçin ve BMÇ Zemin'ın vizyonunuzu nasıl hayata geçirebileceğini keşfedin.
+            Ücretsiz danışmanlık için bugün bizimle iletişime geçin ve BMÇ Zemin'ın vizyonunuzu nasıl hayata
+            geçirebileceğini keşfedin.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 md:px-8 w-full sm:w-auto"
+                className="bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 md:px-8 w-full sm:w-auto transition-colors"
               >
                 Ücretsiz Teklif Al
                 <ArrowRight className="ml-2 h-4 w-4" />
