@@ -12,7 +12,7 @@ export default async function ProjectsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-amber-600 to-amber-800 text-white">
+      <div className="relative top-24 bg-gradient-to-r from-amber-600 to-amber-800 text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative container mx-auto px-4 py-24">
           <div className="max-w-3xl">

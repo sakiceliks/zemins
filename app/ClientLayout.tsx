@@ -34,12 +34,12 @@ export default function ClientLayout({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
-      <body className={`${poppins.className} antialiased`}>
+    <html lang="tr" className={`${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
+      <body className={`${poppins.className}  antialiased`}>
       <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Navbar services={services} />
             <AnimatePresence mode="wait">

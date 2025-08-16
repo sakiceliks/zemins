@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { HardHat, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import logo from '../public/logo.png'
 
 export function Footer({ services, siteSettings }: { services?: any[]; siteSettings?: any }) {
   const servicesList = services || []
@@ -16,12 +18,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
           {/* Company Info */}
           <div className="text-left lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="p-2 bg-amber-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                <HardHat className="h-8 w-8 text-gray-900" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-amber-200 bg-clip-text text-transparent">
-                BMÇ Zemin
-              </span>
+         <Image src={logo} width={300} height={300} alt="logo"/>
             </Link>
             <p className="text-gray-300 mb-8 text-base leading-relaxed">
               {siteSettings?.company_description ||
@@ -31,7 +28,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
               {[
                 { icon: Facebook, href: "#", label: "Facebook" },
                 { icon: Twitter, href: "#", label: "Twitter" },
-                { icon: Instagram, href: "#", label: "Instagram" },
+                { icon: Instagram, href: "https://instagram.com/bmczemin", label: "Instagram" },
                 { icon: Linkedin, href: "#", label: "LinkedIn" },
               ].map(({ icon: Icon, href, label }) => (
                 <Link

@@ -1,143 +1,143 @@
-import Image from "next/image"
-import { Mail, MapPin, Phone, Clock, ArrowRight } from "lucide-react"
+import Image from "next/image";
+import { Mail, MapPin, Phone, Clock, ArrowRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: "İletişim | Zemin Ustası",
   description:
-    "Sorularınız, teklifleriniz veya inşaat proje ihtiyaçlarınızı görüşmek için Zemin Ustası ile iletişime geçin.",
-}
+    "Taş Halı, Epoksi, Mikro Beton gibi profesyonel zemin çözümleri için Zeminustasi.com.tr ile iletişime geçin. Ücretsiz keşif ve teklif için bize ulaşın.",
+};
 
 export default function ContactPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Hero Section */}
+    <div className="flex min-h-screen flex-col bg-gray-900 text-gray-100">
+      {/* Kahraman Bölümü */}
       <section className="relative h-[400px] w-full overflow-hidden">
         <div className="absolute inset-0 bg-black/60 z-10" />
         <Image src="/images/contact-hero.png" alt="İletişim" fill className="object-cover" priority />
         <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">İletişim</h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Proje ihtiyaçlarınızı görüşmek veya teklif talep etmek için ekibimizle iletişime geçin.
+            Zemin projeleriniz için ücretsiz keşif veya teklif talep etmek için ekibimizle iletişime geçin.
           </p>
         </div>
       </section>
 
-      {/* Contact Information */}
-      <section className="py-20 bg-white">
+      {/* İletişim Bilgileri */}
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto">
             <div>
-              <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-4">
+              <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-4">
                 İletişime Geçin
               </div>
-              <h2 className="text-4xl font-bold mb-6">Sizden Haber Almak İstiyoruz</h2>
-              <p className="text-gray-700 mb-10 text-lg">
-                Hizmetlerimiz hakkında sorunuz varsa, teklif talep etmek istiyorsanız veya projenizi başlatmaya hazırsanız, size yardımcı olmak için buradayız.
+              <h2 className="text-4xl font-bold mb-6 text-white">Sizden Haber Almak İstiyoruz</h2>
+              <p className="text-gray-300 mb-10 text-lg">
+                Hizmetlerimiz hakkında sorunuz varsa, teklif almak istiyorsanız veya projenizi başlatmaya hazırsanız, size yardımcı olmak için buradayız.
               </p>
               <div className="space-y-8">
                 <div className="flex items-start">
-                  <div className="bg-amber-100 p-3 rounded-full mr-4">
-                    <MapPin className="h-6 w-6 text-amber-600" />
+                  <div className="bg-amber-500 p-3 rounded-full mr-4">
+                    <MapPin className="h-6 w-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Adresimiz</h3>
-                    <p className="text-gray-700">123 BMÇ Zemin Cad., İnşaat Mahallesi, İstanbul 34000</p>
+                    <h3 className="font-semibold text-lg text-white">Adresimiz</h3>
+                    <p className="text-gray-300"> Fatih, Sayfiye Sk. No:24 D:3, 34920 Sultanbeyli/İstanbul</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-amber-100 p-3 rounded-full mr-4">
-                    <Phone className="h-6 w-6 text-amber-600" />
+                  <div className="bg-amber-500 p-3 rounded-full mr-4">
+                    <Phone className="h-6 w-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Telefon Numarası</h3>
-                    <p className="text-gray-700">(0212) 456-7890</p>
+                    <h3 className="font-semibold text-lg text-white">Telefon Numarası</h3>
+                    <p className="text-gray-300">(0531) 281 29 58</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-amber-100 p-3 rounded-full mr-4">
-                    <Mail className="h-6 w-6 text-amber-600" />
+                  <div className="bg-amber-500 p-3 rounded-full mr-4">
+                    <Mail className="h-6 w-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">E-posta Adresi</h3>
-                    <p className="text-gray-700">info@BMÇ Zemin.com</p>
+                    <h3 className="font-semibold text-lg text-white">E-posta Adresi</h3>
+                    <p className="text-gray-300">info@zeminustasi.com.tr</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-amber-100 p-3 rounded-full mr-4">
-                    <Clock className="h-6 w-6 text-amber-600" />
+                  <div className="bg-amber-500 p-3 rounded-full mr-4">
+                    <Clock className="h-6 w-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Çalışma Saatleri</h3>
-                    <p className="text-gray-700">Pazartesi - Cuma: 08:00 - 17:00</p>
-                    <p className="text-gray-700">Cumartesi: 09:00 - 14:00</p>
+                    <h3 className="font-semibold text-lg text-white">Çalışma Saatleri</h3>
+                    <p className="text-gray-300">Pazartesi - Cuma: 08:00 - 17:00</p>
+                    <p className="text-gray-300">Cumartesi: 09:00 - 14:00</p>
                   </div>
                 </div>
               </div>
             </div>
             <div>
               <div id="quote-form" className="scroll-mt-24">
-                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Ücretsiz Teklif Talep Edin</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-6">
-                  İnşaat projeniz için detaylı, yükümlülük gerektirmeyen bir teklif almak için bu formu doldurun. Ekibimiz gereksinimlerinizi analiz edecek ve kapsamlı bir tahmin sunacak.
+                <h3 className="text-2xl font-bold mb-4 text-white">Ücretsiz Teklif Talep Edin</h3>
+                <p className="text-gray-300 mb-6">
+                  Zemin projeniz için detaylı, ücretsiz bir teklif almak üzere bu formu doldurun. Ekibimiz gereksinimlerinizi analiz ederek kapsamlı bir tahmin sunacaktır.
                 </p>
-                <form className="bg-gray-50 dark:bg-gray-800 p-10 rounded-2xl shadow-sm">
-                  <h3 className="text-2xl font-bold mb-6">Bize Mesaj Gönderin</h3>
+                <form className="bg-gray-800 p-10 rounded-2xl shadow-sm">
+                  <h3 className="text-2xl font-bold mb-6 text-white">Bize Mesaj Gönderin</h3>
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                         Adınız
                       </label>
                       <input
                         type="text"
                         id="name"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
                         placeholder="Ahmet Yılmaz"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                         E-posta Adresi
                       </label>
                       <input
                         type="email"
                         id="email"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
                         placeholder="ahmet@ornek.com"
                       />
                     </div>
                   </div>
                   <div className="mb-6">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
                       Telefon Numarası
                     </label>
                     <input
                       type="tel"
                       id="phone"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
-                      placeholder="(0212) 456-7890"
+                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                      placeholder="(532) 123 45 67"
                     />
                   </div>
                   <div className="mb-6">
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                       Konu
                     </label>
                     <input
                       type="text"
                       id="subject"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
                       placeholder="Proje Sorgusu"
                     />
                   </div>
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                       Mesajınız
                     </label>
                     <textarea
                       id="message"
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
                       placeholder="Projeniz hakkında bize bilgi verin..."
                     ></textarea>
                   </div>
@@ -152,36 +152,36 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-10 bg-gray-50">
+      {/* Harita Bölümü */}
+      <section className="py-10 bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="bg-gray-300 h-[400px] rounded-2xl overflow-hidden relative">
-              {/* This would be replaced with an actual map component in production */}
+            <div className="bg-gray-700 h-[400px] rounded-2xl overflow-hidden relative">
+              {/* Harita bileşeni burada yer alacak */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-gray-600 text-lg font-medium">İnteraktif Harita Burada Görüntülenecek</p>
+                <p className="text-gray-400 text-lg font-medium">İnteraktif Harita Burada Görüntülenecek</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      {/* SSS Bölümü */}
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-4">
-              FAQ
+            <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-4">
+              SSS
             </div>
-            <h2 className="text-4xl font-bold mb-6">Sık Sorulan Sorular</h2>
-            <p className="text-gray-700 text-lg">Hizmetlerimiz ve sürecimiz hakkında yaygın soruların cevaplarını bulun.</p>
+            <h2 className="text-4xl font-bold mb-6 text-white">Sıkça Sorulan Sorular</h2>
+            <p className="text-gray-300 text-lg">Hizmetlerimiz ve süreçlerimiz hakkında yaygın soruların cevaplarını bulun.</p>
           </div>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-gray-50 p-6 rounded-xl">
-                  <h3 className="text-xl font-bold mb-3">{faq.question}</h3>
-                  <p className="text-gray-700">{faq.answer}</p>
+                <div key={index} className="bg-gray-800 p-6 rounded-xl">
+                  <h3 className="text-xl font-bold mb-3 text-white">{faq.question}</h3>
+                  <p className="text-gray-300">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -189,34 +189,34 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 // Örnek veriler
 const faqs = [
   {
-    question: "Hangi tür projeleri ele alıyorsunuz?",
+    question: "Hangi tür zemin kaplamalarını uyguluyorsunuz?",
     answer:
-      "Konut evleri, ticari binalar, endüstriyel tesisler, yenilemeler ve mimari tasarım hizmetleri dahil olmak üzere geniş bir inşaat projeleri yelpazesini ele alıyoruz. Ekibimiz için hiçbir proje çok büyük veya çok küçük değildir.",
+      "Geniş bir yelpazede profesyonel zemin çözümleri sunuyoruz. Bunlar arasında Taş Halı (Stone Carpet), Mikro Beton, Epoksi, Flake, Kauçuk ve Spor Zemin Sistemleri bulunmaktadır. Konut, ticari ve endüstriyel alanlar için uygun çözümlerimiz mevcuttur.",
   },
   {
     question: "Projem için nasıl teklif alabilirim?",
     answer:
-      "İletişim formumuzu doldurarak, ofisimizi arayarak veya bize e-posta göndererek teklif talep edebilirsiniz. Proje ihtiyaçlarınızı görüşmek ve detaylı bir tahmin sunmak için bir danışmanlık randevusu ayarlayacağız.",
+      "Web sitemizdeki iletişim formunu doldurarak, bizi telefonla arayarak veya e-posta göndererek teklif talep edebilirsiniz. Projenizin detaylarını görüşmek ve kapsamlı bir fiyatlandırma sunmak için ücretsiz keşif hizmeti sağlıyoruz.",
   },
   {
-    question: "Tipik bir inşaat projesi ne kadar sürer?",
+    question: "Zemin uygulaması ne kadar sürer?",
     answer:
-      "Proje süreleri kapsam ve karmaşıklığa bağlı olarak değişir. Küçük bir yenileme birkaç hafta sürebilirken, büyük bir ticari bina birkaç ay sürebilir. İlk danışmanlığımız sırasında, projeniz için tahmini bir zaman çizelgesi sunacağız.",
+      "Uygulama süresi, projenin kapsamına, zemin türüne ve yüzeyin durumuna bağlı olarak değişir. Küçük projeler birkaç gün içinde tamamlanabilirken, daha büyük projeler için daha uzun bir süre gerekebilir. Bu bilgiyi ilk danışmanlığımız sırasında size sunacağız.",
   },
   {
-    question: "İzinler ve onayları ele alıyor musunuz?",
+    question: "Uygulama sonrası bakım ve temizlik nasıl yapılır?",
     answer:
-      "Evet, kapsamlı hizmetimizin bir parçası olarak gerekli tüm izinleri ve düzenleyici onayları ele alıyoruz. Ekibimiz, sorunsuz bir onay süreci sağlamak için yerel yapı kodları ve düzenlemeleri konusunda bilgilidir.",
+      "Her zemin türü için özel bakım ve temizlik talimatları sağlıyoruz. Uygulama sonrasında zemininizin uzun ömürlü olması için gereken tüm bilgileri size aktarıyor ve destek oluyoruz.",
   },
   {
-    question: "BMÇ Zemin'ı diğer inşaat şirketlerinden ayıran nedir?",
+    question: "Zemin Ustası'nı diğer firmalardan ayıran nedir?",
     answer:
-      "BMÇ Zemin, kaliteye bağlılığımız, şeffaf iletişimimiz, yenilikçi çözümlerimiz ve zamanında teslimatımızla öne çıkıyor. Geleneksel ustalığı modern teknolojilerle birleştirerek, müşteri beklentilerini aşan olağanüstü sonuçlar sunuyoruz.",
+      "BMÇ Zemin olarak kaliteye, şeffaf iletişime, yenilikçi çözümlere ve zamanında teslimata olan bağlılığımızla öne çıkıyoruz. Geleneksel ustalığı modern teknolojiyle birleştirerek müşteri beklentilerini aşan, estetik ve dayanıklı sonuçlar sunuyoruz.",
   },
-]
+];

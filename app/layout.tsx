@@ -21,10 +21,19 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  title: "Zemin Ustası - Kaliteli İnşaat Hizmetleri",
-  description: "Zemin Ustası olarak konut, ticari ve endüstriyel projeler için kapsamlı inşaat hizmetleri sunuyoruz.",
-  generator: 'v0.dev'
-}
+  title: "Zemin Ustası | Taş Halı, Epoksi ve Dekoratif Zemin Çözümleri",
+  description: "Zeminustasi.com.tr, BMÇ Zemin güvencesiyle Taş Halı, Epoksi, Mikro Beton, Flake ve Kauçuk zemin gibi profesyonel ve dekoratif zemin kaplama çözümleri sunar. Anahtar teslim projelerimizle estetik ve dayanıklılığı bir araya getiriyoruz.",
+  keywords: ["taş halı", "stone carpet", "epoksi zemin", "mikro beton", "flake zemin", "kauçuk zemin", "dekoratif zemin", "beton silim", "spor zemin", "zemin kaplama", "zemin ustası", "bmc zemin"],
+  authors: [{ name: "BMÇ Zemin" }],
+  openGraph: {
+    title: "Zemin Ustası | Taş Halı, Epoksi ve Dekoratif Zemin Çözümleri",
+    description: "Zeminustasi.com.tr, BMÇ Zemin güvencesiyle profesyonel ve dekoratif zemin kaplama çözümleri sunar.",
+    url: "https://www.zeminustasi.com.tr",
+    type: "website",
+    locale: "tr_TR",
+    siteName: "Zemin Ustası",
+  },
+};
 
 export default function RootLayout({
   children,

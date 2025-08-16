@@ -29,7 +29,10 @@ export function Navbar({ services }: NavbarProps) {
         {/* Logo and Menu Button - Sol taraf */}
         <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
 
+<Link href="/">
 <Image src="/logo.png" alt="Logo" width={200} height={200} />           
+
+</Link>
           {/* Desktop Menu Button */}
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
