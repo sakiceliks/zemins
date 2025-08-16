@@ -72,11 +72,8 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
             </h3>
             <ul className="space-y-3">
               {[
-                { href: "/about", label: "Hakkımızda" },
+                { href: "/hakkimizda", label: "Hakkımızda" },
                 { href: "/projeler", label: "Projeler" },
-                { href: "/testimonials", label: "Müşteri Yorumları" },
-                { href: "/careers", label: "Kariyer" },
-                { href: "/faq", label: "FAQ" },
                 { href: "/contact", label: "İletişim" },
               ].map(({ href, label }) => (
                 <li key={href}>

@@ -220,8 +220,7 @@ export default async function ServicesPage() {
               </div>
               <div className="order-1 md:order-2">
                 <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-3 md:mb-4">
-                  Why Choose Us
-                </div>
+Neden bizi tercih etmelisiniz?                </div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-white">BMÇ Zemin Farkı</h2>
                 <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto mb-5 md:mb-8">
                   BMÇ Zemin'ı seçtiğinizde, mükemmellik, yenilik ve tam memnuniyetinize bağlı bir ortak seçiyorsunuz.
