@@ -15,7 +15,7 @@ export default async function ServicesPage() {
   const services = await getServices()
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-[#1a1a1a]">
       {/* Hero Section */}
       <section className="relative h-[300px] sm:h-[400px] w-full overflow-hidden">
         <div className="absolute inset-0 bg-black/60 z-10" />
@@ -36,24 +36,25 @@ export default async function ServicesPage() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-[#1a1a1a]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 md:mb-16 max-w-3xl mx-auto">
-            <div className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-3 md:mb-4">
+            <div className="inline-block px-4 py-2 bg-[#ffbf00] text-black rounded-full text-sm font-medium mb-3 md:mb-4">
               Sunduğumuz Hizmetler
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-white">
               Kapsamlı İnşaat Çözümleri
             </h2>
-            <p className="text-base md:text-lg text-gray-700">
-              Konseptten tamamlanmaya kadar, vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmek için uçtan uca hizmetler sunuyoruz.
+            <p className="text-base md:text-lg text-gray-300">
+              Konseptten tamamlanmaya kadar, vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmek için uçtan uca
+              hizmetler sunuyoruz.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 max-w-6xl mx-auto">
             {services.map((service) => (
               <div
                 key={service.id}
-                className="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group"
+                className="bg-[#2a2a2a] rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:shadow-[#ffbf00]/20 transition-all duration-300 group border border-gray-700"
               >
                 <div className="relative h-48 md:h-56 overflow-hidden">
                   <Image
@@ -65,10 +66,10 @@ export default async function ServicesPage() {
                   />
                 </div>
                 <div className="p-6 md:p-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">{service.title}</h3>
-                  <p className="text-gray-700 mb-5 md:mb-6 text-sm sm:text-base">{service.description}</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-white">{service.title}</h3>
+                  <p className="text-gray-300 mb-5 md:mb-6 text-sm sm:text-base">{service.description}</p>
                   <Link href={`/hizmetler/${service.slug}`}>
-                    <Button className="bg-amber-500 hover:bg-amber-600 text-black w-full">
+                    <Button className="bg-[#ffbf00] hover:bg-[#e6ac00] text-black w-full font-medium">
                       Detayları Gör
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -79,6 +80,8 @@ export default async function ServicesPage() {
           </div>
         </div>
       </section>
+
+
 
       {/* Process Section */}
       <section className="py-12 md:py-20 bg-gray-50">
