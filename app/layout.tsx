@@ -4,6 +4,7 @@ import Script from "next/script"
 import { Montserrat, Poppins } from "next/font/google"
 import { CSSOptimizer } from "@/components/css-optimizer"
 import { PerformanceMonitor } from "@/components/performance-monitor"
+import Head from "next/head"
 
 // Initialize the fonts with display swap for better performance
 const montserrat = Montserrat({
@@ -22,6 +23,7 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Zemin Ustası | Taş Halı, Epoksi ve Dekoratif Zemin Çözümleri",
+      siteLogo: '/logo.png',
   description: "Zeminustasi.com.tr, BMÇ Zemin güvencesiyle Taş Halı, Epoksi, Mikro Beton, Flake ve Kauçuk zemin gibi profesyonel ve dekoratif zemin kaplama çözümleri sunar. Anahtar teslim projelerimizle estetik ve dayanıklılığı bir araya getiriyoruz.",
   keywords: ["taş halı", "stone carpet", "epoksi zemin", "mikro beton", "flake zemin", "kauçuk zemin", "dekoratif zemin", "beton silim", "spor zemin", "zemin kaplama", "zemin ustası", "bmc zemin"],
   authors: [{ name: "BMÇ Zemin" }],
@@ -42,7 +44,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr" className={`${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
-      <head>
+      <Head>
+         <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+      <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+      <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+      <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+      <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+      <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+      <meta name="theme-color" content="#ffffff" />
         {/* Critical CSS optimization */}
         <CSSOptimizer />
         
@@ -84,7 +103,7 @@ export default function RootLayout({
             })
           }}
         />
-      </head>
+      </Head>
       <body className={`${poppins.className} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
         <PerformanceMonitor />
