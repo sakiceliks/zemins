@@ -116,7 +116,7 @@ export default function ContactPage() {
                       type="tel"
                       id="phone"
                       className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
-                      placeholder="(532) 123 45 67"
+                      placeholder="(531) 281 29 58"
                     />
                   </div>
                   <div className="mb-6">

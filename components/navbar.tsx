@@ -168,17 +168,17 @@ function MobileMenu({ navigationItems, services, onClose }: MobileMenuProps) {
               >
                 <Phone className="h-5 w-5 text-orange-500" />
                 <div>
-                  <div className="font-medium">+90 (555) 123 45 67</div>
+                  <div className="font-medium">+90 (531) 281 29 58</div>
                   <div className="text-sm text-gray-400">Hemen ara</div>
                 </div>
               </Link>
               <a
-                href="mailto:info@zeminustasi.com"
+                href="mailto:info@zeminustasi.com.tr"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors text-white"
               >
                 <Mail className="h-5 w-5 text-orange-500" />
                 <div>
-                  <div className="font-medium">info@zeminustasi.com</div>
+                  <div className="font-medium">info@zeminustasi.com.tr</div>
                   <div className="text-sm text-gray-400">E-posta gönder</div>
                 </div>
               </a>

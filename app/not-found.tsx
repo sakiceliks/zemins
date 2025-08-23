@@ -41,7 +41,7 @@ export default function NotFound() {
             </Button>
           </Link>
 
-          <Link href="/contact">
+          <Link href="/iletisim">
             <Button
               variant="outline"
               className="w-full border-gray-600 text-gray-300 hover:bg-[#2a2a2a] hover:text-white hover:border-[#ffbf00] transition-all duration-200 bg-transparent"

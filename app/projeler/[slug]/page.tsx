@@ -173,7 +173,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 Bu projeye benzer çalışmalar için bizimle iletişime geçin ve ücretsiz keşif hizmeti alın.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
+                <Link href="/iletisim">
                   <Button className="bg-amber-500 hover:bg-amber-600 text-white">
                     Ücretsiz Keşif
                   </Button>

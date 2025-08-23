@@ -171,7 +171,7 @@ export default async function ServicesPage() {
             Contact us today for a free consultation and discover how BMÇ Zemin can bring your vision to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <Link href="/contact">
+            <Link href="/iletisim">
               <Button
                 size="lg"
                 className="bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 md:px-8 w-full sm:w-auto"

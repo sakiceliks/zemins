@@ -70,7 +70,7 @@ export default function BetonSilimiPage() {
         <p className="max-w-2xl text-lg">
           BMÇ Zemin ile Üsküdar'da beton zeminleriniz estetik, pürüzsüz ve dayanıklı hale gelir. Profesyonel ekip ve modern ekipmanlarla her projeye özel çözümler.
         </p>
-        <Link href="/contact" className="mt-6">
+        <Link href="/iletisim" className="mt-6">
           <Button variant="default" size="lg" className="flex items-center gap-2">
             Ücretsiz Keşif Al
             <ChevronRight className="h-5 w-5" />
@@ -99,7 +99,7 @@ export default function BetonSilimiPage() {
           </p>
 
           <div className="mt-8 flex justify-center">
-            <Link href="/contact">
+            <Link href="/iletisim">
               <Button variant="default" size="lg" className="flex items-center gap-2">
                 Ücretsiz Keşif Al
                 <ChevronRight className="h-5 w-5" />
@@ -116,7 +116,7 @@ export default function BetonSilimiPage() {
           <p className="max-w-2xl mx-auto mb-6">
             Üsküdar ve İstanbul genelinde BMÇ Zemin, beton silimi ve parlatma hizmetleriyle alanınızı yeniler, estetik ve dayanıklı zeminler sunar.
           </p>
-          <Link href="/contact">
+          <Link href="/iletisim">
             <Button variant="default" size="lg" className="flex items-center gap-2">
               Hemen İletişime Geçin
               <ChevronRight className="h-5 w-5" />

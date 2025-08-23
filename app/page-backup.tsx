@@ -153,7 +153,7 @@ function Home() {
                 <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-5 md:mb-6">
                   Başarılı inşaatın işbirliği, yenilik ve detaylara dikkat temelinde inşa edildiğine inanıyoruz. Geleneksel ustalığı en son teknolojiyle birleştirerek, zamanın testini geçen projeler sunuyoruz.
                 </p>
-                <Link href="/contact">
+                <Link href="/iletisim">
                   <AnimatedButton
                     className="bg-amber-500 hover:bg-amber-600 text-white font-semibold"
                     hoverEffect="shine"
@@ -281,7 +281,7 @@ function Home() {
               Ücretsiz danışmanlık ve teklif için bugün bizimle iletişime geçin. Ekibimiz vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmeye hazır.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/contact" className="w-full sm:w-auto">
+              <Link href="/iletisim" className="w-full sm:w-auto">
                 <HoverButton
                   size="lg"
                   className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 md:px-8 w-full sm:w-auto"
@@ -291,7 +291,7 @@ function Home() {
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </HoverButton>
               </Link>
-              <Link href="/contact" className="w-full sm:w-auto">
+              <Link href="/iletisim" className="w-full sm:w-auto">
                 <AnimatedButton
                   size="lg"
                   variant="outline"

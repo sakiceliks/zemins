@@ -252,7 +252,7 @@ Neden bizi tercih etmelisiniz?                </div>
               geçirebileceğini keşfedin.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/contact">
+              <Link href="/iletisim">
                 <Button
                   size="lg"
                   className="bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 md:px-8 w-full sm:w-auto transition-colors"

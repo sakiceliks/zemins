@@ -129,7 +129,7 @@ export default function ClientComponents() {
               Ekibimiz vizyonunuzu hassasiyet ve mükemmellikle hayata geçirmeye hazır.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link href="/contact" className="w-full sm:w-auto">
+              <Link href="/iletisim" className="w-full sm:w-auto">
                 <HoverButton
                   size="lg"
                   className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 md:px-8 w-full sm:w-auto"
@@ -139,7 +139,7 @@ export default function ClientComponents() {
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </HoverButton>
               </Link>
-              <Link href="/contact" className="w-full sm:w-auto">
+              <Link href="/iletisim" className="w-full sm:w-auto">
                 <AnimatedButton
                   size="lg"
                   variant="outline"

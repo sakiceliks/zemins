@@ -165,12 +165,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 Detaylı bilgi almak ve teklif talep etmek için bizimle iletişime geçin.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
+                <Link href="/iletisim">
                   <Button className="bg-amber-500 hover:bg-amber-600 text-white">
                     Teklif Al
                   </Button>
                 </Link>
-                <Link href="/contact">
+                <Link href="/iletisim">
                   <Button variant="outline">
                     İletişime Geç
                   </Button>

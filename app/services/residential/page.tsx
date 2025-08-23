@@ -44,7 +44,7 @@ export default function ResidentialServicePage() {
                 team of skilled professionals will work closely with you to bring your vision to life while ensuring the
                 highest standards of quality and craftsmanship.
               </p>
-              <Link href="/contact">
+              <Link href="/iletisim">
                 <Button className="bg-amber-500 hover:bg-amber-600 text-black">
                   Get a Free Consultation
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -246,7 +246,7 @@ export default function ResidentialServicePage() {
             life.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact">
+            <Link href="/iletisim">
               <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-black font-medium px-8">
                 Get a Free Quote
                 <ArrowRight className="ml-2 h-4 w-4" />
