@@ -74,7 +74,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
               {[
                 { href: "/hakkimizda", label: "Hakkımızda" },
                 { href: "/projeler", label: "Projeler" },
-                { href: "/contact", label: "İletişim" },
+                { href: "/iletisim", label: "İletişim" },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link

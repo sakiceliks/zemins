@@ -20,7 +20,7 @@ export function Navbar({ services }: NavbarProps) {
     { name: "Hakkımızda", href: "/hakkimizda" },
     { name: "Hizmetler", href: "/hizmetler" },
     { name: "Projeler", href: "/projeler" },
-    { name: "İletişim", href: "/contact" }
+    { name: "İletişim", href: "/iletisim" }
   ]
 
   return (
