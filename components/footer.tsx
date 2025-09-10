@@ -3,6 +3,7 @@ import { HardHat, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } 
 import { Button } from "@/components/ui/button"
 import Image from "next/image";
 import logo from '../public/logo.png'
+import KadikoyTelefontamiriBacklink from "./TelSeo";
 
 export function Footer({ services, siteSettings }: { services?: any[]; siteSettings?: any }) {
   const servicesList = services || []
@@ -144,6 +145,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
           </div>
         </div>
       </div>
+      <KadikoyTelefontamiriBacklink variant="footer"/>
     </footer>
   )
 }
