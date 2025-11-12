@@ -99,9 +99,9 @@ export function ServicesCard() {
             <CardContent className="pt-0">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  {/* Özellikler için veritabanından gelen features array'i kullanılıyor */}
+                  {/* Özellikler için veritabanından gelen features array'i kullanılıyor - sadece ilk 3 tanesi gösteriliyor */}
                   {service.features && service.features.length > 0 ? (
-                    service.features.map((feature, featureIndex) => (
+                    service.features.slice(0, 3).map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center gap-2 text-sm">
                         <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                         <span className="text-gray-300">{feature}</span>
