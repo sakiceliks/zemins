@@ -83,7 +83,7 @@ export default function AdminTeamPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -95,8 +95,8 @@ export default function AdminTeamPage() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Ekip Yönetimi</h1>
-              <p className="text-gray-600 dark:text-gray-400">Ekip üyelerini yönetin</p>
+              <h1 className="text-3xl font-bold text-white">Ekip Yönetimi</h1>
+              <p className="text-gray-400">Ekip üyelerini yönetin</p>
             </div>
           </div>
           <Link href="/admin/team/new">
@@ -139,20 +139,20 @@ export default function AdminTeamPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-300 text-sm mb-4 line-clamp-3">
                   {member.bio}
                 </p>
                 
                 {/* Contact Info */}
                 <div className="space-y-2 mb-4">
                   {member.email && (
-                    <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center text-sm text-gray-400">
                       <Mail className="h-4 w-4 mr-2" />
                       {member.email}
                     </div>
                   )}
                   {member.phone && (
-                    <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center text-sm text-gray-400">
                       <Phone className="h-4 w-4 mr-2" />
                       {member.phone}
                     </div>
@@ -235,7 +235,7 @@ export default function AdminTeamPage() {
 
         {teamMembers.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 mb-4">Henüz hiç ekip üyesi eklenmemiş.</p>
+            <p className="text-gray-400 mb-4">Henüz hiç ekip üyesi eklenmemiş.</p>
             <Link href="/admin/team/new">
               <Button className="bg-amber-500 hover:bg-amber-600">
                 <Plus className="mr-2 h-4 w-4" />

@@ -142,7 +142,7 @@ export default function EditBlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
@@ -153,8 +153,8 @@ export default function EditBlogPost() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Blog Yazısı Düzenle</h1>
-            <p className="text-gray-600 dark:text-gray-400">Blog yazısı bilgilerini güncelleyin</p>
+            <h1 className="text-3xl font-bold text-white">Blog Yazısı Düzenle</h1>
+            <p className="text-gray-400">Blog yazısı bilgilerini güncelleyin</p>
           </div>
         </div>
 
@@ -266,7 +266,7 @@ export default function EditBlogPost() {
                       {formData.tags.map((tag, index) => (
                         <div
                           key={index}
-                          className="flex items-center gap-2 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-sm"
+                          className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded-full text-sm"
                         >
                           <span>{tag}</span>
                           <button

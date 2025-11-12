@@ -58,20 +58,20 @@ export default function AdminServices() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
             <Link href="/admin">
-              <Button variant="outline">
+              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Panele Dön
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Hizmet Yönetimi</h1>
-              <p className="text-gray-600 dark:text-gray-400">Tüm hizmetlerinizi yönetin</p>
+              <h1 className="text-3xl font-bold text-white">Hizmet Yönetimi</h1>
+              <p className="text-gray-400">Tüm hizmetlerinizi yönetin</p>
             </div>
           </div>
           <Link href="/admin/hizmetler/new">
@@ -157,7 +157,7 @@ export default function AdminServices() {
 
         {services.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 mb-4">Henüz hiç hizmet eklenmemiş.</p>
+            <p className="text-gray-400 mb-4">Henüz hiç hizmet eklenmemiş.</p>
             <Link href="/admin/hizmetler/new">
               <Button className="bg-amber-500 hover:bg-amber-600">
                 <Plus className="mr-2 h-4 w-4" />

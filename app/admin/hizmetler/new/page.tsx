@@ -83,7 +83,7 @@ export default function NewService() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
@@ -94,8 +94,8 @@ export default function NewService() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Yeni Hizmet Ekle</h1>
-            <p className="text-gray-600 dark:text-gray-400">Yeni bir hizmet oluşturun</p>
+            <h1 className="text-3xl font-bold text-white">Yeni Hizmet Ekle</h1>
+            <p className="text-gray-400">Yeni bir hizmet oluşturun</p>
           </div>
         </div>
 

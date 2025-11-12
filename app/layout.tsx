@@ -24,7 +24,7 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  title: "Zemin Ustası | Taş Halı, Epoksi ve Dekoratif Zemin Çözümleri",
+  title: "Sultanbeyli Epoksi Zemin| Taş Halı, Epoksi ve Dekoratif Zemin Çözümleri | Zemin Ustası",
       siteLogo: '/logo.png',
   description: "Zeminustasi.com.tr, BMÇ Zemin güvencesiyle Taş Halı, Epoksi, Mikro Beton, Flake ve Kauçuk zemin gibi profesyonel ve dekoratif zemin kaplama çözümleri sunar. Anahtar teslim projelerimizle estetik ve dayanıklılığı bir araya getiriyoruz.",
   keywords: ["taş halı", "stone carpet", "epoksi zemin", "mikro beton", "flake zemin", "kauçuk zemin", "dekoratif zemin", "beton silim", "spor zemin", "zemin kaplama", "zemin ustası", "bmc zemin"],

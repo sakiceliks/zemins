@@ -29,17 +29,17 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Yönetim Paneli</h1>
-            <p className="text-gray-600 dark:text-gray-400">Hoş geldiniz, {user?.email}</p>
+            <h1 className="text-3xl font-bold text-white">Yönetim Paneli</h1>
+            <p className="text-gray-400">Hoş geldiniz, {user?.email}</p>
           </div>
           <div className="flex gap-4">
             <Link href="/">
-              <Button variant="outline">Siteye Dön</Button>
+              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white">Siteye Dön</Button>
             </Link>
             <Button onClick={handleSignOut} variant="destructive">
               Çıkış Yap
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
 
           <TabsContent value="services" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">Hizmetler</h2>
+              <h2 className="text-2xl font-bold text-white">Hizmetler</h2>
               <Link href="/admin/hizmetler/new">
                 <Button className="bg-amber-500 hover:bg-amber-600">
                   <Plus className="mr-2 h-4 w-4" />
@@ -138,7 +138,7 @@ export default function AdminDashboard() {
 
           <TabsContent value="projects" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">Projeler</h2>
+              <h2 className="text-2xl font-bold text-white">Projeler</h2>
               <Link href="/admin/projeler/new">
                 <Button className="bg-amber-500 hover:bg-amber-600">
                   <Plus className="mr-2 h-4 w-4" />
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="content" className="space-y-6">
-            <h2 className="text-2xl font-bold">İçerik Yönetimi</h2>
+            <h2 className="text-2xl font-bold text-white">İçerik Yönetimi</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
@@ -216,7 +216,7 @@ export default function AdminDashboard() {
         </TabsContent>
 
         <TabsContent value="hero-carousel" className="space-y-6">
-          <h2 className="text-2xl font-bold">Hero Carousel Yönetimi</h2>
+          <h2 className="text-2xl font-bold text-white">Hero Carousel Yönetimi</h2>
           
           <Card>
             <CardHeader>
@@ -233,14 +233,14 @@ export default function AdminDashboard() {
                     Hero Carousel Yönetimi
                   </Button>
                 </Link>
-                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div className="p-4 bg-blue-900/20 rounded-lg">
                   <div className="flex items-start gap-3">
                     <Image className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
-                      <p className="font-medium text-blue-900 dark:text-blue-100">
+                      <p className="font-medium text-blue-100">
                         Hero Carousel Özellikleri
                       </p>
-                      <ul className="text-sm text-blue-700 dark:text-blue-300 mt-2 space-y-1">
+                      <ul className="text-sm text-blue-300 mt-2 space-y-1">
                         <li>• Resim yükleme ve yönetimi</li>
                         <li>• Başlık, alt başlık ve açıklama düzenleme</li>
                         <li>• Buton metni ve linki ayarlama</li>
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
         </TabsContent>
 
         <TabsContent value="team" className="space-y-6">
-          <h2 className="text-2xl font-bold">Ekip Yönetimi</h2>
+          <h2 className="text-2xl font-bold text-white">Ekip Yönetimi</h2>
           
           <Card>
             <CardHeader>
@@ -285,7 +285,7 @@ export default function AdminDashboard() {
         </TabsContent>
 
         <TabsContent value="settings" className="space-y-6">
-            <h2 className="text-2xl font-bold">Ayarlar</h2>
+            <h2 className="text-2xl font-bold text-white">Ayarlar</h2>
             
             <Card>
               <CardHeader>
@@ -316,7 +316,7 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                   
-                  <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="p-4 bg-gray-800 rounded-lg">
                     <div className="flex items-start gap-3">
                       {settings.authCheckEnabled ? (
                         <Shield className="h-5 w-5 text-green-600 mt-0.5" />

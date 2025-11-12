@@ -82,7 +82,7 @@ export default function AdminFAQs() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -94,8 +94,8 @@ export default function AdminFAQs() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">SSS Yönetimi</h1>
-              <p className="text-gray-600 dark:text-gray-400">Sık sorulan soruları yönetin</p>
+              <h1 className="text-3xl font-bold text-white">SSS Yönetimi</h1>
+              <p className="text-gray-400">Sık sorulan soruları yönetin</p>
             </div>
           </div>
           <Link href="/admin/faqs/new">
@@ -185,7 +185,7 @@ export default function AdminFAQs() {
 
         {faqs.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 mb-4">Henüz hiç SSS eklenmemiş.</p>
+            <p className="text-gray-400 mb-4">Henüz hiç SSS eklenmemiş.</p>
             <Link href="/admin/faqs/new">
               <Button className="bg-amber-500 hover:bg-amber-600">
                 <Plus className="mr-2 h-4 w-4" />

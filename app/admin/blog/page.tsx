@@ -66,20 +66,20 @@ export default function AdminBlog() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
             <Link href="/admin">
-              <Button variant="outline">
+              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Panele Dön
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Blog Yönetimi</h1>
-              <p className="text-gray-600 dark:text-gray-400">Tüm blog yazılarınızı yönetin</p>
+              <h1 className="text-3xl font-bold text-white">Blog Yönetimi</h1>
+              <p className="text-gray-400">Tüm blog yazılarınızı yönetin</p>
             </div>
           </div>
           <Link href="/admin/blog/new">
@@ -109,7 +109,7 @@ export default function AdminBlog() {
                 <div className="flex justify-between items-start mb-2">
                   <CardTitle className="text-lg line-clamp-2">{post.title}</CardTitle>
                   {post.featured && (
-                    <Badge className="bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300">Öne Çıkan</Badge>
+                    <Badge className="bg-amber-900 text-amber-300">Öne Çıkan</Badge>
                   )}
                 </div>
                 <CardDescription className="line-clamp-2">
@@ -125,7 +125,7 @@ export default function AdminBlog() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-col gap-2 mb-4 text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex flex-col gap-2 mb-4 text-sm text-gray-400">
                   {post.author && (
                     <div className="flex items-center gap-2">
                       <User className="h-4 w-4" />
@@ -138,7 +138,7 @@ export default function AdminBlog() {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-sm text-gray-400">
                     {post.published_at ? 'Yayınlandı' : 'Taslak'}
                   </div>
                   <div className="flex gap-2">
@@ -185,7 +185,7 @@ export default function AdminBlog() {
 
         {posts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 mb-4">Henüz blog yazısı eklenmemiş.</p>
+            <p className="text-gray-400 mb-4">Henüz blog yazısı eklenmemiş.</p>
             <Link href="/admin/blog/new">
               <Button className="bg-amber-500 hover:bg-amber-600">
                 <Plus className="mr-2 h-4 w-4" />

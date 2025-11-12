@@ -96,15 +96,15 @@ async function handleLogin(e: React.FormEvent) {
   // Ayarlar kontrol edilirken loading göster
   if (checkingSettings) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-amber-500"></div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+      <Card className="w-full max-w-md bg-gray-800 border-gray-700">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             {authCheckEnabled ? (
@@ -112,9 +112,9 @@ async function handleLogin(e: React.FormEvent) {
             ) : (
               <ShieldOff className="h-5 w-5 text-red-600" />
             )}
-            <CardTitle className="text-2xl font-bold">Yönetici Girişi</CardTitle>
+            <CardTitle className="text-2xl font-bold text-white">Yönetici Girişi</CardTitle>
           </div>
-          <CardDescription>
+          <CardDescription className="text-gray-400">
             {authCheckEnabled 
               ? "Yönetim paneline erişim için giriş yapın"
               : "Güvenlik devre dışı - Direkt erişim mümkün"
@@ -123,9 +123,9 @@ async function handleLogin(e: React.FormEvent) {
         </CardHeader>
         <CardContent className="space-y-4">
           {!authCheckEnabled && (
-            <Alert className="border-red-200 bg-red-50 dark:bg-red-950 dark:border-red-800">
-              <ShieldOff className="h-4 w-4 text-red-600" />
-              <AlertDescription className="text-red-700 dark:text-red-300">
+            <Alert className="border-red-800 bg-red-950">
+              <ShieldOff className="h-4 w-4 text-red-400" />
+              <AlertDescription className="text-red-300">
                 <strong>Güvenlik Uyarısı:</strong> Kullanıcı doğrulaması devre dışı. Admin paneline direkt erişim mümkün.
               </AlertDescription>
             </Alert>

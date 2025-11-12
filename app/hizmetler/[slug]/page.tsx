@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { getServiceBySlug, getServices, generateServiceJsonLd } from "@/lib/supabase"
 import type { Metadata } from "next"
 import Script from "next/script"
+import ContactWidget from "@/components/ContactWidget"
 
 // HTML içeriğini güvenli hale getiren yardımcı fonksiyon
 function sanitizeHtml(html: string): string {
@@ -165,6 +166,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
+
       {/* Content Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
@@ -204,6 +206,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
             {/* Service Content */}
             <SafeHtmlContent content={service.content} />
+            <ContactWidget />
 
             {/* CTA Section */}
             <div className="mt-16 bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl text-center">
@@ -226,6 +229,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </Link>
               </div>
             </div>
+
+            {/* Contact Widget */}
           </div>
         </div>
       </section>
