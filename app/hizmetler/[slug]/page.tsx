@@ -186,6 +186,22 @@ export default async function ServicePage({ params }: ServicePageProps) {
               )}
             </div>
 
+            {/* Service Image */}
+            {service.image && (
+              <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority={false}
+                  />
+                </div>
+              </div>
+            )}
+
             {/* Service Content */}
             <SafeHtmlContent content={service.content} />
 
