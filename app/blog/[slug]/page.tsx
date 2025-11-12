@@ -168,6 +168,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               )}
             </div>
 
+            {/* Blog Post Image */}
+            {post.image && (
+              <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority={false}
+                  />
+                </div>
+              </div>
+            )}
+
             {/* Post Content */}
             <div 
               className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-amber-600 dark:prose-a:text-amber-400"
