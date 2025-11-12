@@ -4,6 +4,8 @@ import Script from "next/script"
 import { Montserrat, Poppins } from "next/font/google"
 import { CSSOptimizer } from "@/components/css-optimizer"
 import { PerformanceMonitor } from "@/components/performance-monitor"
+import GoogleAnalytics from "@/components/GoogleAnalytics"
+import UmamiAnalytics from "@/components/UmamiAnalytics"
 import Head from "next/head"
 
 // Initialize the fonts with display swap for better performance
@@ -105,6 +107,8 @@ export default function RootLayout({
         />
       </Head>
       <body className={`${poppins.className} antialiased`}>
+        <GoogleAnalytics />
+        <UmamiAnalytics />
         <ClientLayout>{children}</ClientLayout>
         <PerformanceMonitor />
       </body>

@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, X, ChevronRight, Menu, Instagram, Facebook, Twitte
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import ContactButton from "./ContactButton"
 
 interface NavbarProps {
   services: Array<{ title: string; slug: string }>
@@ -20,6 +21,7 @@ export function Navbar({ services }: NavbarProps) {
     { name: "Hakkımızda", href: "/hakkimizda" },
     { name: "Hizmetler", href: "/hizmetler" },
     { name: "Projeler", href: "/projeler" },
+    { name: "Blog", href: "/blog" },
     { name: "İletişim", href: "/iletisim" }
   ]
 
@@ -162,16 +164,19 @@ function MobileMenu({ navigationItems, services, onClose }: MobileMenuProps) {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">İletişim</h3>
             <div className="space-y-3">
-              <Link
-                href="tel:+905551234567"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors text-white"
+              <ContactButton
+                type="phone"
+                phoneNumber="905312812958"
+                variant="ghost"
+                className="w-full justify-start flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors text-white"
+                trackingLabel="mobile_menu_phone"
               >
                 <Phone className="h-5 w-5 text-orange-500" />
                 <div>
                   <div className="font-medium">+90 (531) 281 29 58</div>
                   <div className="text-sm text-gray-400">Hemen ara</div>
                 </div>
-              </Link>
+              </ContactButton>
               <a
                 href="mailto:info@zeminustasi.com.tr"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors text-white"
@@ -198,10 +203,17 @@ function MobileMenu({ navigationItems, services, onClose }: MobileMenuProps) {
       <div className="p-6 border-t border-gray-700 bg-gray-800/50">
         <div className="space-y-4">
           <div className="flex gap-2">
-            <Button className="flex-1 bg-orange-500 hover:bg-orange-600" onClick={onClose}>
+            <ContactButton
+              type="phone"
+              phoneNumber="905312812958"
+              variant="default"
+              className="flex-1 bg-orange-500 hover:bg-orange-600"
+              trackingLabel="mobile_menu_footer_phone"
+              onClick={onClose}
+            >
               <Phone className="h-4 w-4 mr-2" />
               Ücretsiz Keşif
-            </Button>
+            </ContactButton>
             <Button variant="outline" className="flex-1 bg-transparent border-gray-600 text-white hover:bg-gray-700" onClick={onClose}>
               Teklif Al
             </Button>

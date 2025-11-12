@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { AdminSettingsProvider } from "@/contexts/admin-settings-context"
 import { ServicesProvider } from "@/contexts/services-context"
-import { ArrowLeft, Settings, Image, FileText, Users, Building2 } from "lucide-react"
+import { ArrowLeft, Settings, Image, FileText, Users, Building2, BookOpen } from "lucide-react"
 import Link from "next/link"
 
 export default function AdminLayout({
@@ -53,6 +53,10 @@ export default function AdminLayout({
                 <Link href="/admin/team" className="flex items-center gap-2 py-4 px-2 border-b-2 border-transparent hover:border-gray-300 text-gray-500 hover:text-gray-700">
                   <Users className="h-4 w-4" />
                   Ekip
+                </Link>
+                <Link href="/admin/blog" className="flex items-center gap-2 py-4 px-2 border-b-2 border-transparent hover:border-gray-300 text-gray-500 hover:text-gray-700">
+                  <BookOpen className="h-4 w-4" />
+                  Blog
                 </Link>
               </nav>
             </div>

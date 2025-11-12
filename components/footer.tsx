@@ -75,6 +75,7 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
               {[
                 { href: "/hakkimizda", label: "Hakkımızda" },
                 { href: "/projeler", label: "Projeler" },
+                { href: "/blog", label: "Blog" },
                 { href: "/iletisim", label: "İletişim" },
               ].map(({ href, label }) => (
                 <li key={href}>
@@ -145,7 +146,6 @@ export function Footer({ services, siteSettings }: { services?: any[]; siteSetti
           </div>
         </div>
       </div>
-      <KadikoyTelefontamiriBacklink variant="footer"/>
     </footer>
   )
 }

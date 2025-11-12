@@ -166,6 +166,24 @@ export interface TeamMember {
   updated_at: string
 }
 
+export interface BlogPost {
+  id: string
+  title: string
+  slug: string
+  excerpt?: string
+  content: string
+  image?: string
+  author?: string
+  category?: string
+  tags?: string[]
+  featured: boolean
+  meta_title?: string
+  meta_description?: string
+  published_at?: string
+  created_at: string
+  updated_at: string
+}
+
 export interface AdminUser {
   id: string
   email: string
@@ -554,6 +572,125 @@ export async function deleteTeamMember(id: string) {
     .eq('id', id)
 
   if (error) throw error
+}
+
+// Blog functions
+export async function getBlogPosts() {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) throw error
+  return data as BlogPost[]
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+
+  if (error) throw error
+  return data as BlogPost
+}
+
+export async function getFeaturedBlogPosts() {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('featured', true)
+    .order('created_at', { ascending: false })
+
+  if (error) throw error
+  return data as BlogPost[]
+}
+
+export async function getBlogPostsByCategory(category: string) {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('category', category)
+    .order('created_at', { ascending: false })
+
+  if (error) throw error
+  return data as BlogPost[]
+}
+
+export function generateBlogPostJsonLd(post: BlogPost) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.meta_description || post.excerpt || post.content.substring(0, 160),
+    "image": post.image,
+    "datePublished": post.published_at || post.created_at,
+    "dateModified": post.updated_at,
+    "author": {
+      "@type": "Organization",
+      "name": "Zemin Ustası",
+      "url": "https://zeminustasi.com.tr"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Zemin Ustası",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://zeminustasi.com.tr/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://zeminustasi.com.tr/blog/${post.slug}`
+    },
+    "articleSection": post.category || "Genel",
+    "keywords": post.tags?.join(", ") || ""
+  }
+}
+
+// Blog CRUD operations
+export async function createBlogPost(post: Omit<BlogPost, 'id' | 'created_at' | 'updated_at'>) {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .insert([post])
+    .select()
+    .single()
+
+  if (error) throw error
+  return data as BlogPost
+}
+
+export async function updateBlogPost(id: string, post: Partial<BlogPost>) {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .update(post)
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) throw error
+  return data as BlogPost
+}
+
+export async function deleteBlogPost(id: string) {
+  const { error } = await supabase
+    .from('blog_posts')
+    .delete()
+    .eq('id', id)
+
+  if (error) throw error
+}
+
+export async function getBlogPostById(id: string) {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error) throw error
+  return data as BlogPost
 }
 
 // JSON-LD helpers

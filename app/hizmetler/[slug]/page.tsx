@@ -108,8 +108,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative h-[400px] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-black/60 z-10" />
+      <section className="relative h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] w-full overflow-hidden">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black/90 z-10" />
+        
         {service.image && (
           <Image
             src={service.image}
@@ -120,15 +122,46 @@ export default async function ServicePage({ params }: ServicePageProps) {
             sizes="100vw"
           />
         )}
-        <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center">
-                      <Link href="/hizmetler" className="mb-4">
-              <Button variant="outline" className="text-white border-white hover:bg-white/10">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Hizmetlere Dön
-              </Button>
-            </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{service.title}</h1>
-          <p className="text-xl text-white/90 max-w-2xl">{service.description}</p>
+        
+        {/* Content Container */}
+        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end pb-8 sm:pb-12 md:pb-16">
+          <div className="max-w-4xl w-full">
+            {/* Back Button - Top */}
+            <div className="mb-6 sm:mb-8">
+              <Link href="/hizmetler">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="text-white border-white/80 hover:bg-white/20 hover:border-white bg-white/10 backdrop-blur-sm transition-all duration-300 group"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                  <span className="hidden sm:inline">Hizmetlere Dön</span>
+                  <span className="sm:hidden">Geri</span>
+                </Button>
+              </Link>
+            </div>
+
+            {/* Title and Description */}
+            <div className="space-y-4 sm:space-y-5">
+              {/* Featured Badge */}
+              {service.featured && (
+                <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-xl">
+                  <Tag className="h-4 w-4" />
+                  <span>Öne Çıkan Hizmet</span>
+                </div>
+              )}
+              
+              {/* Title */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight drop-shadow-2xl">
+                {service.title}
+              </h1>
+              
+              {/* Description */}
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl leading-relaxed drop-shadow-lg">
+                {service.description}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -137,17 +170,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Service Info */}
-            <div className="flex flex-wrap gap-4 mb-8 pb-8 border-b border-gray-200 dark:border-gray-700">
-              <div className="flex items-center text-gray-600 dark:text-gray-400">
-                <Calendar className="h-5 w-5 mr-2" />
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-8 pb-8 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                <Calendar className="h-4 w-4 sm:h-5 sm:w-5 mr-2 flex-shrink-0" />
                 <span>Oluşturulma: {new Date(service.created_at).toLocaleDateString('tr-TR')}</span>
               </div>
-              <div className="flex items-center text-gray-600 dark:text-gray-400">
-                <Tag className="h-5 w-5 mr-2" />
+              <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                <Tag className="h-4 w-4 sm:h-5 sm:w-5 mr-2 flex-shrink-0" />
                 <span>Güncellenme: {new Date(service.updated_at).toLocaleDateString('tr-TR')}</span>
               </div>
               {service.featured && (
-                <div className="bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300 px-3 py-1 rounded-full text-sm font-medium">
+                <div className="bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-md">
                   Öne Çıkan Hizmet
                 </div>
               )}

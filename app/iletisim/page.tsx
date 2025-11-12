@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Mail, MapPin, Phone, Clock, ArrowRight } from "lucide-react";
-
+import ContactButton from "@/components/ContactButton";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
@@ -25,125 +25,168 @@ export default function ContactPage() {
       </section>
 
       {/* İletişim Bilgileri */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            <div>
-              <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-4">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-900">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
+            {/* Sol Taraf - İletişim Bilgileri */}
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-medium mb-4 sm:mb-6">
                 İletişime Geçin
               </div>
-              <h2 className="text-4xl font-bold mb-6 text-white">Sizden Haber Almak İstiyoruz</h2>
-              <p className="text-gray-300 mb-10 text-lg">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white leading-tight">
+                Sizden Haber Almak İstiyoruz
+              </h2>
+              <p className="text-gray-300 mb-8 sm:mb-10 text-base sm:text-lg leading-relaxed">
                 Hizmetlerimiz hakkında sorunuz varsa, teklif almak istiyorsanız veya projenizi başlatmaya hazırsanız, size yardımcı olmak için buradayız.
               </p>
-              <div className="space-y-8">
-                <div className="flex items-start">
-                  <div className="bg-amber-500 p-3 rounded-full mr-4">
-                    <MapPin className="h-6 w-6 text-black" />
+              
+              <div className="space-y-6 sm:space-y-8">
+                {/* Adres */}
+                <div className="flex items-start gap-4 group">
+                  <div className="bg-amber-500 p-3 sm:p-4 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-white">Adresimiz</h3>
-                    <p className="text-gray-300"> Fatih, Sayfiye Sk. No:24 D:3, 34920 Sultanbeyli/İstanbul</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-amber-500 p-3 rounded-full mr-4">
-                    <Phone className="h-6 w-6 text-black" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-white">Telefon Numarası</h3>
-                    <p className="text-gray-300">(0531) 281 29 58</p>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-base sm:text-lg text-white mb-1 sm:mb-2">Adresimiz</h3>
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                      Fatih, Sayfiye Sk. No:24 D:3, 34920 Sultanbeyli/İstanbul
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="bg-amber-500 p-3 rounded-full mr-4">
-                    <Mail className="h-6 w-6 text-black" />
+
+                {/* Telefon */}
+                <div className="flex items-start gap-4 group">
+                  <div className="bg-amber-500 p-3 sm:p-4 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-white">E-posta Adresi</h3>
-                    <p className="text-gray-300">info@zeminustasi.com.tr</p>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-base sm:text-lg text-white mb-1 sm:mb-2">Telefon Numarası</h3>
+                    <ContactButton
+                      type="phone"
+                      phoneNumber="905312812958"
+                      variant="link"
+                      className="text-amber-500 hover:text-amber-400 p-0 h-auto font-medium text-sm sm:text-base"
+                      trackingLabel="contact_page_phone"
+                    >
+                      (0531) 281 29 58
+                    </ContactButton>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="bg-amber-500 p-3 rounded-full mr-4">
-                    <Clock className="h-6 w-6 text-black" />
+
+                {/* E-posta */}
+                <div className="flex items-start gap-4 group">
+                  <div className="bg-amber-500 p-3 sm:p-4 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg text-white">Çalışma Saatleri</h3>
-                    <p className="text-gray-300">Pazartesi - Cuma: 08:00 - 17:00</p>
-                    <p className="text-gray-300">Cumartesi: 09:00 - 14:00</p>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-base sm:text-lg text-white mb-1 sm:mb-2">E-posta Adresi</h3>
+                    <a 
+                      href="mailto:info@zeminustasi.com.tr"
+                      className="text-amber-500 hover:text-amber-400 transition-colors text-sm sm:text-base"
+                    >
+                      info@zeminustasi.com.tr
+                    </a>
+                  </div>
+                </div>
+
+                {/* Çalışma Saatleri */}
+                <div className="flex items-start gap-4 group">
+                  <div className="bg-amber-500 p-3 sm:p-4 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-base sm:text-lg text-white mb-1 sm:mb-2">Çalışma Saatleri</h3>
+                    <div className="space-y-1">
+                      <p className="text-gray-300 text-sm sm:text-base">Pazartesi - Cuma: 08:00 - 17:00</p>
+                      <p className="text-gray-300 text-sm sm:text-base">Cumartesi: 09:00 - 14:00</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div>
+
+            {/* Sağ Taraf - Form */}
+            <div className="order-1 lg:order-2">
               <div id="quote-form" className="scroll-mt-24">
-                <h3 className="text-2xl font-bold mb-4 text-white">Ücretsiz Teklif Talep Edin</h3>
-                <p className="text-gray-300 mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-white">Ücretsiz Teklif Talep Edin</h3>
+                <p className="text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
                   Zemin projeniz için detaylı, ücretsiz bir teklif almak üzere bu formu doldurun. Ekibimiz gereksinimlerinizi analiz ederek kapsamlı bir tahmin sunacaktır.
                 </p>
-                <form className="bg-gray-800 p-10 rounded-2xl shadow-sm">
-                  <h3 className="text-2xl font-bold mb-6 text-white">Bize Mesaj Gönderin</h3>
-                  <div className="grid md:grid-cols-2 gap-6 mb-6">
+                
+                <form className="bg-gray-800 p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl border border-gray-700">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-6 text-white">Bize Mesaj Gönderin</h3>
+                  
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                        Adınız
+                        Adınız <span className="text-amber-500">*</span>
                       </label>
                       <input
                         type="text"
                         id="name"
-                        className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                        required
+                        className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-white placeholder-gray-500 transition-all"
                         placeholder="Ahmet Yılmaz"
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                        E-posta Adresi
+                        E-posta Adresi <span className="text-amber-500">*</span>
                       </label>
                       <input
                         type="email"
                         id="email"
-                        className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                        required
+                        className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-white placeholder-gray-500 transition-all"
                         placeholder="ahmet@ornek.com"
                       />
                     </div>
                   </div>
-                  <div className="mb-6">
+                  
+                  <div className="mb-4 sm:mb-6">
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-                      Telefon Numarası
+                      Telefon Numarası <span className="text-amber-500">*</span>
                     </label>
                     <input
                       type="tel"
                       id="phone"
-                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
-                      placeholder="(531) 281 29 58"
+                      required
+                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-white placeholder-gray-500 transition-all"
+                      placeholder="(0531) 281 29 58"
                     />
                   </div>
-                  <div className="mb-6">
+                  
+                  <div className="mb-4 sm:mb-6">
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                       Konu
                     </label>
                     <input
                       type="text"
                       id="subject"
-                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-white placeholder-gray-500 transition-all"
                       placeholder="Proje Sorgusu"
                     />
                   </div>
-                  <div className="mb-6">
+                  
+                  <div className="mb-6 sm:mb-8">
                     <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                      Mesajınız
+                      Mesajınız <span className="text-amber-500">*</span>
                     </label>
                     <textarea
                       id="message"
-                      rows={4}
-                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                      rows={5}
+                      required
+                      className="w-full px-4 py-3 border border-gray-700 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-white placeholder-gray-500 resize-none transition-all"
                       placeholder="Projeniz hakkında bize bilgi verin..."
                     ></textarea>
                   </div>
-                  <Button className="w-full bg-amber-500 hover:bg-amber-600 text-black font-medium py-3">
+                  
+                  <Button 
+                    type="submit"
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
                     Mesaj Gönder
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                   </Button>
                 </form>
               </div>

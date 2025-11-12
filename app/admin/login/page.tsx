@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { supabase, isAdmin } from "@/lib/supabase"
+import { saveAuthToStorage, createAdminUser } from "@/hooks/use-admin-auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -53,7 +54,7 @@ async function handleLogin(e: React.FormEvent) {
   setError("");
 
   try {
-    // 1. Giriş yap
+    // 1. Giriş yap (Supabase auth ile doğrulama)
     const { data: { user }, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -72,6 +73,13 @@ async function handleLogin(e: React.FormEvent) {
       await supabase.auth.signOut();
       throw new Error("Yönetici yetkiniz yok");
     }
+
+    // 3. localStorage'a admin bilgilerini kaydet
+    const adminUser = createAdminUser(user.email || email, user.id)
+    saveAuthToStorage(adminUser)
+
+    // 4. Supabase auth'tan çıkış yap (artık localStorage kullanıyoruz)
+    await supabase.auth.signOut();
 
     router.push("/admin");
   } catch (error: any) {

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { AnimatePresence, motion } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { ActionButtons } from "@/components/ActionButtons"
 import { getServices, getSiteSettings } from "@/lib/supabase"
 
 import "@/app/globals.css"
@@ -23,7 +24,13 @@ export default function ClientLayout({
   const [services, setServices] = useState<any[]>([])
   const [siteSettings, setSiteSettings] = useState<any>(null)
   
+  // Admin sayfalarında header ve footer'ı gizle
+  const isAdminPage = pathname?.startsWith('/admin')
+  
   useEffect(() => {
+    // Admin sayfalarında data yükleme
+    if (isAdminPage) return
+    
     const loadData = async () => {
       try {
         const [servicesData, settingsData] = await Promise.all([
@@ -38,12 +45,18 @@ export default function ClientLayout({
     }
     
     loadData()
-  }, [])
+  }, [isAdminPage])
+  
+  // Admin sayfalarında sadece children render et
+  if (isAdminPage) {
+    return <>{children}</>
+  }
+  
   return (
     <div>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
         <div className="antialiased flex min-h-screen flex-col">
-          <Navbar services={services} setIsMenuOpen={setIsMenuOpen} />
+          <Navbar services={services} />
           <AnimatePresence mode="wait">
             <motion.main
               key={pathname}
@@ -58,6 +71,7 @@ export default function ClientLayout({
           </AnimatePresence>
           <Footer services={services} siteSettings={siteSettings} />
           <ScrollToTop />
+          <ActionButtons />
         </div>
       </ThemeProvider>
     </div>

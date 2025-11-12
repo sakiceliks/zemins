@@ -11,6 +11,7 @@ import { ScrollProgress } from "@/components/animations/scroll-progress";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import ServicesSection from "./ServiceSection";
 import { ServicesCard } from "./ServicesCard";
+import { BlogCards } from "./BlogCards";
 import EpoxyVisualizer from "./EpoxyVisualizer";
 
 export default function ClientComponents() {
@@ -114,6 +115,34 @@ export default function ClientComponents() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="min-h-screen bg-background p-8">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn>
+            <h1 className="text-3xl font-bold text-center mb-6 text-foreground">
+              Son Blog Yazılarımız
+            </h1>
+            <p className="text-center text-gray-700 dark:text-gray-300 mb-12">
+              Zemin kaplama, epoksi ve dekoratif zemin çözümleri hakkında güncel yazılar, ipuçları ve uzman görüşleri
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <BlogCards />
+            </div>
+            <div className="text-center mt-12">
+              <Link href="/blog">
+                <HoverButton
+                  className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 md:px-8"
+                  hoverEffect="ripple"
+                >
+                  Tüm Blog Yazılarını Görüntüle
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </HoverButton>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

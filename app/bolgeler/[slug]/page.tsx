@@ -6,6 +6,7 @@ import ServiceCarousel from "@/components/service-carousel"
 import { getBolgelerBySlug } from "@/lib/supabase"
 import { Bolgeler } from "@/lib/supabase"
 import { use } from "react"
+import ContactButton from "@/components/ContactButton"
 
 interface PageProps {
   params: Promise<{
@@ -347,12 +348,17 @@ export default function DynamicPage({ params }: PageProps) {
 
 
              {/* WhatsApp Button */}
-       <a
-         href={`https://wa.me/${siteData.company_whatsappPhone}`}
-         className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg hover:scale-110 transition-all animate-bounce z-50"
+       <ContactButton
+         type="whatsapp"
+         phoneNumber={siteData.company_whatsappPhone?.replace(/\D/g, '') || '905312812958'}
+         message="Merhaba, size nasıl yardımcı olabilirim?"
+         variant="default"
+         className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg hover:scale-110 transition-all animate-bounce z-50 p-0"
+         trackingLabel="bolgeler_whatsapp"
+         showIcon={false}
        >
          <i className="fab fa-whatsapp"></i>
-       </a>
+       </ContactButton>
 
        {/* Font Awesome CDN */}
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
