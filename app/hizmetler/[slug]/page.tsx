@@ -110,9 +110,6 @@ export default async function ServicePage({ params }: ServicePageProps) {
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] w-full overflow-hidden">
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black/90 z-10" />
-        
         {service.image && (
           <Image
             src={service.image}
@@ -123,6 +120,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
             sizes="100vw"
           />
         )}
+        
+        {/* Black Overlay */}
+        <div className="absolute inset-0 z-10 bg-black/70"></div>
         
         {/* Content Container */}
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end pb-8 sm:pb-12 md:pb-16">
