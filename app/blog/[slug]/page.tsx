@@ -103,8 +103,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
 
       {/* Hero Section */}
-      <section className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-black/60 z-10" />
+      <section className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full overflow-hidden mt-[80px] sm:mt-[96px] md:mt-0 pt-24 sm:pt-32 md:pt-24">
         {post.image && (
           <Image
             src={post.image}
@@ -115,25 +114,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             sizes="100vw"
           />
         )}
-        <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center">
-          <Link href="/blog" className="mb-3 sm:mb-4">
-            <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10 text-xs sm:text-sm">
+        <div className="absolute inset-0 bg-black/70 z-10" />
+        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+          <Link href="/blog" className="mb-4 sm:mb-6">
+            <Button variant="outline" size="sm" className="text-white border-white/80 hover:bg-white/20 hover:border-white bg-white/10 backdrop-blur-sm transition-all duration-300 text-xs sm:text-sm">
               <ArrowLeft className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Bloga Dön</span>
               <span className="sm:hidden">Geri</span>
             </Button>
           </Link>
-          <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
             {post.category && (
-              <Badge className="bg-amber-500 text-white text-xs">{post.category}</Badge>
+              <Badge className="bg-amber-500 text-white text-xs sm:text-sm px-3 py-1">{post.category}</Badge>
             )}
             {post.featured && (
-              <Badge className="bg-green-500 text-white text-xs">Öne Çıkan</Badge>
+              <Badge className="bg-green-500 text-white text-xs sm:text-sm px-3 py-1">Öne Çıkan</Badge>
             )}
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">{post.title}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl max-w-4xl">{post.title}</h1>
           {post.excerpt && (
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl line-clamp-2 sm:line-clamp-none">{post.excerpt}</p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl leading-relaxed drop-shadow-lg">{post.excerpt}</p>
           )}
         </div>
       </section>
