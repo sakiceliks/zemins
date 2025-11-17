@@ -85,7 +85,7 @@ export default function ClientComponents() {
       {/* Features Section */}
       <div className="min-h-screen bg-background p-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-6 text-foreground">
+          <h2 className="text-2xl font-bold text-center mb-6 text-foreground">
             Zeminlerinizde Estetiği ve Dayanıklılığı Bir Araya Getiriyoruz
           </h2>
           <p className="text-center text-gray-700 dark:text-gray-300 mb-12">
