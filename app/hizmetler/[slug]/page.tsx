@@ -7,6 +7,7 @@ import { getServiceBySlug, getServices, generateServiceJsonLd } from "@/lib/supa
 import type { Metadata } from "next"
 import Script from "next/script"
 import ContactWidget from "@/components/ContactWidget"
+import { buildSeoMetadata } from "@/lib/seo"
 
 // HTML içeriğini güvenli hale getiren yardımcı fonksiyon
 function sanitizeHtml(html: string): string {
@@ -78,21 +79,32 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   try {
     const { slug } = await params
     const service = await getServiceBySlug(slug)
-    
-    return {
+    const keywordSource =
+      service.features && service.features.length > 0
+        ? service.features
+        : [service.title, "zemin kaplama", "epoksi hizmeti"]
+
+    return buildSeoMetadata({
       title: service.meta_title || service.title,
       description: service.meta_description || service.description,
-      openGraph: {
-        title: service.meta_title || service.title,
-        description: service.meta_description || service.description,
-        images: service.image ? [service.image] : [],
-      },
-    }
+      path: `/hizmetler/${slug}`,
+      keywords: keywordSource,
+      images: service.image,
+      type: "article",
+      section: "Services",
+      publishedTime: service.created_at,
+      modifiedTime: service.updated_at,
+    })
   } catch (error) {
-    return {
-      title: 'Hizmet Bulunamadı',
-      description: 'Aradığınız hizmet bulunamadı.',
-    }
+    return buildSeoMetadata({
+      title: "Hizmet Bulunamadı",
+      description: "Aradığınız hizmet bulunamadı.",
+      path: "/hizmetler",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    })
   }
 }
 

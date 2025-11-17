@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, Suspense } from 'react';
 
 // ⚠️ ÖNEMLİ: Google Analytics 4 Measurement ID'nizi buraya ekleyin
-const GA_TRACKING_ID = 'G-XXXXXXXXXX';
+const GA_TRACKING_ID = 'G-T5BN6FWNYR';
 
 // Page view tracking function
 export const pageview = (url: string) => {

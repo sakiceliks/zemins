@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Calendar, MapPin, Tag, Building } from "lucide-react"
+import { ArrowLeft, Calendar, MapPin, Building } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getProjectBySlug, getProjects } from "@/lib/supabase"
 import type { Metadata } from "next"
+import { buildSeoMetadata } from "@/lib/seo"
 
 interface ProjectPageProps {
   params: {
@@ -27,21 +28,29 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   try {
     const project = await getProjectBySlug(params.slug)
-    
-    return {
+
+    return buildSeoMetadata({
       title: project.meta_title || project.title,
       description: project.meta_description || project.description,
-      openGraph: {
-        title: project.meta_title || project.title,
-        description: project.meta_description || project.description,
-        images: project.image ? [project.image] : [],
-      },
-    }
+      path: `/projects/${params.slug}`,
+      keywords: [project.title, project.category, project.location || "flooring project"],
+      images: project.image,
+      type: "article",
+      section: "Projects",
+      publishedTime: project.created_at,
+      modifiedTime: project.updated_at,
+      tags: project.category ? [project.category] : undefined,
+    })
   } catch (error) {
-    return {
-      title: 'Proje Bulunamadı',
-      description: 'Aradığınız proje bulunamadı.',
-    }
+    return buildSeoMetadata({
+      title: "Project Not Found",
+      description: "The project you are looking for could not be found.",
+      path: "/projects",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    })
   }
 }
 

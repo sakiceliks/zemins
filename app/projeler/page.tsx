@@ -5,6 +5,15 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, MapPin, Calendar } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { buildSeoMetadata } from "@/lib/seo"
+
+export const metadata = buildSeoMetadata({
+  title: "Projelerimiz | BMÇ Zemin Referansları",
+  description:
+    "BMÇ Zemin tarafından tamamlanan taş halı, epoksi, mikro beton ve endüstriyel zemin projelerini inceleyin. Sektörel referanslarımızı keşfedin.",
+  keywords: ["bmç zemin projeleri", "epoksi referans", "taş halı uygulama örnekleri", "zemin projeleri"],
+  path: "/projeler",
+})
 
 export default async function ProjectsPage() {
   const projects = await getProjects()

@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Calendar, MapPin, Tag, Building } from "lucide-react"
+import { ArrowLeft, Calendar, MapPin, Building } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getProjectBySlug, getProjects, generateProjectJsonLd } from "@/lib/supabase"
 import type { Metadata } from "next"
 import Script from "next/script"
+import { buildSeoMetadata } from "@/lib/seo"
 
 // HTML içeriğini güvenli hale getiren yardımcı fonksiyon
 function sanitizeHtml(html: string): string {
@@ -77,21 +78,29 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   try {
     const { slug } = await params
     const project = await getProjectBySlug(slug)
-    
-    return {
+
+    return buildSeoMetadata({
       title: project.meta_title || project.title,
       description: project.meta_description || project.description,
-      openGraph: {
-        title: project.meta_title || project.title,
-        description: project.meta_description || project.description,
-        images: project.image ? [project.image] : [],
-      },
-    }
+      path: `/projeler/${slug}`,
+      keywords: [project.title, project.category, project.location || "zemin projesi"],
+      images: project.image,
+      type: "article",
+      section: "Projects",
+      publishedTime: project.created_at,
+      modifiedTime: project.updated_at,
+      tags: project.category ? [project.category] : undefined,
+    })
   } catch (error) {
-    return {
-      title: 'Proje Bulunamadı',
-      description: 'Aradığınız proje bulunamadı.',
-    }
+    return buildSeoMetadata({
+      title: "Proje Bulunamadı",
+      description: "Aradığınız proje bulunamadı.",
+      path: "/projeler",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    })
   }
 }
 

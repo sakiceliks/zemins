@@ -8,18 +8,15 @@ import { Badge } from "@/components/ui/badge"
 import { getBlogPosts, getFeaturedBlogPosts } from "@/lib/supabase"
 import type { Metadata } from "next"
 import Script from "next/script"
+import { absoluteUrl, buildSeoMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildSeoMetadata({
   title: "Blog | Zemin Ustası - Zemin Kaplama ve İnşaat Hakkında Makaleler",
-  description: "Zemin kaplama, epoksi, taş halı ve dekoratif zemin çözümleri hakkında güncel blog yazıları, ipuçları ve uzman görüşleri.",
+  description:
+    "Zemin kaplama, epoksi, taş halı ve dekoratif zemin çözümleri hakkında güncel blog yazıları, ipuçları ve uzman görüşleri.",
   keywords: ["zemin kaplama blog", "epoksi zemin", "taş halı", "dekoratif zemin", "inşaat blog", "zemin ustası"],
-  openGraph: {
-    title: "Blog | Zemin Ustası",
-    description: "Zemin kaplama ve inşaat hakkında güncel blog yazıları",
-    url: "https://zeminustasi.com.tr/blog",
-    type: "website",
-  },
-}
+  path: "/blog",
+})
 
 export default async function BlogPage() {
   let posts
@@ -42,20 +39,20 @@ export default async function BlogPage() {
     "@type": "Blog",
     "name": "Zemin Ustası Blog",
     "description": "Zemin kaplama ve inşaat hakkında güncel blog yazıları",
-    "url": "https://zeminustasi.com.tr/blog",
+    "url": absoluteUrl("/blog"),
     "publisher": {
       "@type": "Organization",
       "name": "Zemin Ustası",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://zeminustasi.com.tr/logo.png"
+        "url": absoluteUrl("/logo.png")
       }
     },
     "blogPost": posts.map(post => ({
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.excerpt || post.meta_description,
-      "url": `https://zeminustasi.com.tr/blog/${post.slug}`,
+      "url": absoluteUrl(`/blog/${post.slug}`),
       "datePublished": post.published_at || post.created_at,
       "dateModified": post.updated_at,
       "image": post.image

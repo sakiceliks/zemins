@@ -3,12 +3,15 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle, Home, Hammer, Ruler } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { buildSeoMetadata } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: "Residential Construction | BMÇ Zemin Construction",
   description:
-    "Explore BMÇ Zemin's residential construction services including custom homes, renovations, and additions.",
-}
+    "From custom homes to premium renovations, explore BMÇ Zemin's residential construction services that combine craftsmanship, durability and modern design.",
+  keywords: ["residential construction", "custom homes", "bmç zemin projeleri", "konut tadilatı"],
+  path: "/hizmetler/residential",
+})
 
 export default function ResidentialServicePage() {
   return (

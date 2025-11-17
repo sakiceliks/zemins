@@ -2,12 +2,15 @@ import Image from "next/image";
 import { Mail, MapPin, Phone, Clock, ArrowRight } from "lucide-react";
 import ContactButton from "@/components/ContactButton";
 import { Button } from "@/components/ui/button";
+import { buildSeoMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: "İletişim | Zemin Ustası",
   description:
-    "Taş Halı, Epoksi, Mikro Beton gibi profesyonel zemin çözümleri için Zeminustasi.com.tr ile iletişime geçin. Ücretsiz keşif ve teklif için bize ulaşın.",
-};
+    "Taş halı, epoksi, mikro beton ve dekoratif zemin çözümlerimiz hakkında ücretsiz keşif veya teklif almak için Zemin Ustası ekibiyle iletişime geçin.",
+  keywords: ["zemin ustası iletişim", "bmç zemin telefon", "epoksi teklif", "taş halı keşif"],
+  path: "/iletisim",
+});
 
 export default function ContactPage() {
   return (

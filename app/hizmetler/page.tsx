@@ -5,34 +5,40 @@ import { ArrowRight, CheckCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Script from "next/script"
+import { absoluteUrl, buildSeoMetadata } from "@/lib/seo"
 
-export const metadata = {
-
+export const metadata = buildSeoMetadata({
   title: "Hizmetlerimiz | Taş Halı, Epoksi ve Zemin Çözümleri - Zemin Ustası",
-  description: "Zeminustasi.com.tr olarak sunduğumuz tüm zemin kaplama hizmetlerini keşfedin: Taş Halı, Mikro Beton, Flake, Epoksi, Kauçuk ve Spor Zemin Sistemleri. Her projeye özel, estetik ve dayanıklı çözümlerimizle tanışın.",
-  keywords: ["taş halı hizmetleri", "epoksi uygulama", "mikro beton hizmeti", "flake zemin çözümleri", "kauçuk zemin kaplama", "spor zemin sistemleri", "beton silim", "dekoratif zemin", "zemin kaplama hizmetleri", "zemin ustası hizmetleri"],
-  authors: [{ name: "BMÇ Zemin" }],
-  openGraph: {
-    title: "Hizmetlerimiz | Taş Halı, Epoksi ve Zemin Çözümleri - Zemin Ustası",
-    description: "Zeminustasi.com.tr'nin tüm zemin kaplama hizmetlerini keşfedin: Taş Halı, Mikro Beton, Epoksi ve daha fazlası.",
-    url: "https://www.zeminustasi.com.tr/hizmetler",
-    type: "website",
-    locale: "tr_TR",
-    siteName: "Zemin Ustası"
-  }
-};
+  description:
+    "Taş Halı, Mikro Beton, Flake, Epoksi, Kauçuk ve Spor Zemin sistemleri dahil tüm profesyonel zemin kaplama hizmetlerimizi keşfedin. Projenize özel çözümler için Zemin Ustası yanınızda.",
+  keywords: [
+    "taş halı hizmetleri",
+    "epoksi uygulama",
+    "mikro beton hizmeti",
+    "flake zemin çözümleri",
+    "kauçuk zemin kaplama",
+    "spor zemin sistemleri",
+    "beton silim",
+    "dekoratif zemin",
+    "zemin kaplama hizmetleri",
+    "zemin ustası hizmetleri",
+  ],
+  path: "/hizmetler",
+})
+
+const pageUrl = absoluteUrl("/hizmetler")
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Zemin Ustası Hizmetlerimiz",
   "description": "Zeminustasi.com.tr'nin sunduğu tüm profesyonel zemin kaplama hizmetleri ve çözümleri.",
-  "url": "https://www.zeminustasi.com.tr/hizmetler",
+  "url": pageUrl,
   "serviceType": "Zemin Kaplama ve Uygulama Hizmetleri",
   "provider": {
     "@type": "LocalBusiness",
     "name": "BMÇ Zemin - Zemin Ustası",
-    "url": "https://www.zeminustasi.com.tr"
+    "url": absoluteUrl("/")
   },
   "mainEntity": {
     "@type": "ItemList",

@@ -4,12 +4,21 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { buildSeoMetadata } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: "Our Services | BMÇ Zemin Construction",
   description:
-    "Explore BMÇ Zemin's comprehensive construction services including residential, commercial, industrial, and architectural design solutions.",
-}
+    "Discover BMÇ Zemin's full range of residential, commercial and industrial flooring solutions including epoxy, microcement, polished concrete and terrazzo systems.",
+  keywords: [
+    "construction services",
+    "bmç zemin services",
+    "epoxy flooring service",
+    "microcement contractor",
+    "residential renovation",
+  ],
+  path: "/services",
+})
 
 export default async function ServicesPage() {
   const services = await getServices()

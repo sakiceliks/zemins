@@ -1,66 +1,79 @@
-"use client"
-
 import Link from "next/link";
-import Head from "next/head";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/animations/fade-in";
 import { ScrollProgress } from "@/components/animations/scroll-progress";
+import Script from "next/script";
+import { absoluteUrl, buildSeoMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = buildSeoMetadata({
+  title: "Üsküdar Beton Silimi & Parlatma | BMÇ Zemin Profesyonel Hizmetler",
+  description:
+    "Üsküdar’da beton silimi ve parlatma hizmetlerinde uzman ekip. BMÇ Zemin ile beton zeminleriniz pürüzsüz, estetik ve dayanıklı hale gelir.",
+  keywords: [
+    "Üsküdar beton silimi",
+    "Üsküdar beton parlatma",
+    "BMÇ Zemin",
+    "beton temizleme",
+    "zemin parlatma",
+    "endüstriyel beton silimi",
+  ],
+  path: "/projeler/uskudar-beton-silimi-parlatma",
+  images: absoluteUrl("/images/beton-silimi.jpg"),
+  type: "article",
+  section: "Projects",
+});
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "Organization"],
+  name: "BMÇ Zemin - Üsküdar Beton Silimi ve Parlatma",
+  alternateName: ["Üsküdar Beton Silimi", "Üsküdar Beton Parlatma"],
+  url: absoluteUrl("/projeler/uskudar-beton-silimi-parlatma"),
+  logo: absoluteUrl("/logo.png"),
+  image: [absoluteUrl("/images/beton-silimi.jpg")],
+  description: "Üsküdar BMÇ Zemin beton silimi ve parlatma hizmetleri ile zeminlerinizi pürüzsüz ve estetik hale getirir.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fatih, Sayfiye Sk. No:24 D:3",
+    addressLocality: "Üsküdar",
+    addressRegion: "İstanbul",
+    postalCode: "34920",
+    addressCountry: "TR",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 41.0221, longitude: 29.0236 },
+  telephone: "+90 531 281 29 58",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Zemin Kaplama ve Parlatma Hizmetleri",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Beton Silimi", description: "Her zemine özel pürüzsüz ve dayanıklı beton silimi hizmeti." },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Beton Parlatma", description: "Zeminlerin estetik görünümünü artıran yüksek parlaklıkta beton parlatma." },
+      },
+    ],
+  },
+  founder: { "@type": "Person", name: "Ümit Kesik" },
+  foundingDate: "2010",
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 15 },
+};
 
 export default function BetonSilimiPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <ScrollProgress />
-
-      <Head>
-        <title>Üsküdar Beton Silimi & Parlatma | BMÇ Zemin Profesyonel Hizmetler</title>
-        <meta
-          name="description"
-          content="Üsküdar’da beton silimi ve parlatma hizmetlerinde uzman ekip. BMÇ Zemin ile beton zeminleriniz pürüzsüz, estetik ve dayanıklı hale gelir."
-        />
-        <meta
-          name="keywords"
-          content="Üsküdar beton silimi, Üsküdar beton parlatma, BMÇ Zemin, beton temizleme, zemin parlatma, endüstriyel beton silimi"
-        />
-
-        {/* JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "Organization"],
-              "name": "BMÇ Zemin - Üsküdar Beton Silimi ve Parlatma",
-              "alternateName": ["Üsküdar Beton Silimi", "Üsküdar Beton Parlatma"],
-              "url": "https://zeminustasi.com.tr/uskudar-beton-silimi-parlatma",
-              "logo": "https://zeminustasi.com.tr/logo.png",
-              "image": ["https://zeminustasi.com.tr/images/beton-silimi.jpg"],
-              "description": "Üsküdar BMÇ Zemin beton silimi ve parlatma hizmetleri ile zeminlerinizi pürüzsüz ve estetik hale getirir.",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Fatih, Sayfiye Sk. No:24 D:3",
-                "addressLocality": "Üsküdar",
-                "addressRegion": "İstanbul",
-                "postalCode": "34920",
-                "addressCountry": "TR"
-              },
-              "geo": { "@type": "GeoCoordinates", "latitude": 41.0221, "longitude": 29.0236 },
-              "telephone": "+90 531 281 29 58",
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Zemin Kaplama ve Parlatma Hizmetleri",
-                "itemListElement": [
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beton Silimi", "description": "Her zemine özel pürüzsüz ve dayanıklı beton silimi hizmeti." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beton Parlatma", "description": "Zeminlerin estetik görünümünü artıran yüksek parlaklıkta beton parlatma." } }
-                ]
-              },
-              "founder": { "@type": "Person", "name": "Ümit Kesik" },
-              "foundingDate": "2010",
-              "numberOfEmployees": { "@type": "QuantitativeValue", "value": 15 }
-            })
-          }}
-        />
-      </Head>
+      <Script
+        id="uskudar-beton-silimi-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
 
       {/* Hero */}
       <section className="relative w-full h-[400px] bg-amber-500 flex flex-col justify-center items-center text-gray-900 text-center px-4">
@@ -83,19 +96,29 @@ export default function BetonSilimiPage() {
         <div className="max-w-5xl mx-auto prose prose-lg dark:prose-invert text-white">
           <h2>Beton Silimi Nedir ve Neden Önemlidir?</h2>
           <p>
-            Beton silimi, zeminlerdeki yüzey bozulmalarını, lekeleri ve çizikleri gideren profesyonel bir işlemdir. Üsküdar ve İstanbul genelinde BMÇ Zemin olarak, endüstriyel tesisler, otoparklar, depolar ve mağazalar için özel beton silimi hizmeti sunuyoruz. Beton silimi sayesinde zeminler hem estetik hem de dayanıklı bir yüzeye kavuşur.
+            Beton silimi, zeminlerdeki yüzey bozulmalarını, lekeleri ve çizikleri gideren profesyonel bir işlemdir. Üsküdar ve İstanbul genelinde BMÇ Zemin
+            olarak, endüstriyel tesisler, otoparklar, depolar ve mağazalar için özel beton silimi hizmeti sunuyoruz. Beton silimi sayesinde zeminler hem
+            estetik hem de dayanıklı bir yüzeye kavuşur.
           </p>
           <p>
-            Beton zeminler, kullanım yoğunluğu ve çevresel faktörler nedeniyle zamanla matlaşabilir ve yüzey bozulmaları oluşabilir. Bu durum, hem estetik açıdan hem de zemin dayanıklılığı açısından sorun yaratır. BMÇ Zemin ekibi, modern makineler ve özel taşlama teknikleri ile zeminleri pürüzsüz hale getirir, ömrünü uzatır ve parlak görünüm kazandırır.
+            Beton zeminler, kullanım yoğunluğu ve çevresel faktörler nedeniyle zamanla matlaşabilir ve yüzey bozulmaları oluşabilir. Bu durum, hem estetik
+            açıdan hem de zemin dayanıklılığı açısından sorun yaratır. BMÇ Zemin ekibi, modern makineler ve özel taşlama teknikleri ile zeminleri pürüzsüz
+            hale getirir, ömrünü uzatır ve parlak görünüm kazandırır.
           </p>
           <p>
-            Beton silimi hizmetimizde, yüksek kaliteli taşlama ekipmanları kullanılır ve her zemin tipine özel program uygulanır. Endüstriyel alanlar, ofisler ve mağazalar gibi yoğun kullanılan mekanlarda, zeminlerin güvenliği ve estetiği ön planda tutulur. Ayrıca, işlem sonrası bakım ve parlatma hizmeti ile zeminler uzun yıllar ilk günkü gibi korunur.
+            Beton silimi hizmetimizde, yüksek kaliteli taşlama ekipmanları kullanılır ve her zemin tipine özel program uygulanır. Endüstriyel alanlar, ofisler
+            ve mağazalar gibi yoğun kullanılan mekanlarda, zeminlerin güvenliği ve estetiği ön planda tutulur. Ayrıca, işlem sonrası bakım ve parlatma
+            hizmeti ile zeminler uzun yıllar ilk günkü gibi korunur.
           </p>
           <p>
-            Üsküdar beton silimi işlemi sırasında kullanılan teknikler arasında CNC taşlama makineleri, el taşlama ekipmanları ve özel temizleme kimyasalları yer alır. Bu sayede, zeminler çizik ve deformasyonlardan arındırılır, pürüzsüz ve parlak bir yüzey elde edilir. Beton parlatma ile birleştiğinde, zeminler hem estetik hem de dayanıklı olur.
+            Üsküdar beton silimi işlemi sırasında kullanılan teknikler arasında CNC taşlama makineleri, el taşlama ekipmanları ve özel temizleme
+            kimyasalları yer alır. Bu sayede, zeminler çizik ve deformasyonlardan arındırılır, pürüzsüz ve parlak bir yüzey elde edilir. Beton parlatma ile
+            birleştiğinde, zeminler hem estetik hem de dayanıklı olur.
           </p>
           <p>
-            BMÇ Zemin olarak amacımız, Üsküdar’daki tüm müşterilerimize yüksek kalite, ekonomik fiyat ve garantili hizmet sunmaktır. Beton silimi ve parlatma hizmetimiz, zeminlerinizin ömrünü uzatır ve mekanlarınıza değer katar. Hemen bizimle iletişime geçerek ücretsiz keşif ve fiyat teklifi alabilirsiniz.
+            BMÇ Zemin olarak amacımız, Üsküdar’daki tüm müşterilerimize yüksek kalite, ekonomik fiyat ve garantili hizmet sunmaktır. Beton silimi ve
+            parlatma hizmetimiz, zeminlerinizin ömrünü uzatır ve mekanlarınıza değer katar. Hemen bizimle iletişime geçerek ücretsiz keşif ve fiyat teklifi
+            alabilirsiniz.
           </p>
 
           <div className="mt-8 flex justify-center">

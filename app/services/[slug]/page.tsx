@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getServiceBySlug, getServices } from "@/lib/supabase"
 import type { Metadata } from "next"
+import { buildSeoMetadata } from "@/lib/seo"
 
 interface ServicePageProps {
   params: {
@@ -27,21 +28,32 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   try {
     const service = await getServiceBySlug(params.slug)
-    
-    return {
+    const keywordSource =
+      service.features && service.features.length > 0
+        ? service.features
+        : [service.title, "flooring service", "bmç zemin"]
+
+    return buildSeoMetadata({
       title: service.meta_title || service.title,
       description: service.meta_description || service.description,
-      openGraph: {
-        title: service.meta_title || service.title,
-        description: service.meta_description || service.description,
-        images: service.image ? [service.image] : [],
-      },
-    }
+      path: `/services/${params.slug}`,
+      keywords: keywordSource,
+      images: service.image,
+      type: "article",
+      section: "Services",
+      publishedTime: service.created_at,
+      modifiedTime: service.updated_at,
+    })
   } catch (error) {
-    return {
-      title: 'Hizmet Bulunamadı',
-      description: 'Aradığınız hizmet bulunamadı.',
-    }
+    return buildSeoMetadata({
+      title: "Service Not Found",
+      description: "The service you are looking for could not be found.",
+      path: "/services",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    })
   }
 }
 

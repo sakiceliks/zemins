@@ -3,11 +3,15 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle, Award, Clock, Target, Eye, Lightbulb, Compass, Wrench } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { buildSeoMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: "Hakkımızda | BMÇ Zemin | Zemin Ustası",
-  description: "BMÇ Zemin firmasının tarihini, değerlerini ve dekoratif zemin çözümlerine adanmış uzman ekibimizi keşfedin. Taş Halı, Epoksi ve Mikro Beton gibi alanlarda mükemmelliği inşa ediyoruz.",
-};
+  description:
+    "BMÇ Zemin'in değerlerini, uzman ekibini ve taş halı, epoksi ile mikro beton odaklı dekoratif zemin çözümlerine yaklaşımını yakından tanıyın.",
+  keywords: ["bmç zemin", "zemin ustası", "hakkımızda", "taş halı uzmanı", "epoksi profesyoneli"],
+  path: "/hakkimizda",
+});
 
 export default function AboutPage() {
   return (

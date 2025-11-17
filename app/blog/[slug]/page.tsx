@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { Calendar, Tag, ArrowLeft, ArrowRight, User, Share2 } from "lucide-react"
+import { Calendar, Tag, ArrowLeft, ArrowRight, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { getBlogPostBySlug, getBlogPosts, getServices, generateBlogPostJsonLd } from "@/lib/supabase"
 import type { Metadata } from "next"
 import Script from "next/script"
 import ContactWidget from "@/components/ContactWidget"
+import { buildSeoMetadata } from "@/lib/seo"
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -32,32 +33,29 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     const { slug } = await params
     const post = await getBlogPostBySlug(slug)
     
-    return {
+    return buildSeoMetadata({
       title: post.meta_title || post.title,
       description: post.meta_description || post.excerpt || post.content.substring(0, 160),
-      keywords: post.tags?.join(", ") || post.category || "",
-      openGraph: {
-        title: post.meta_title || post.title,
-        description: post.meta_description || post.excerpt || post.content.substring(0, 160),
-        images: post.image ? [post.image] : [],
-        type: "article",
-        publishedTime: post.published_at || post.created_at,
-        modifiedTime: post.updated_at,
-        authors: post.author ? [post.author] : ["Zemin Ustası"],
-        tags: post.tags || [],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: post.meta_title || post.title,
-        description: post.meta_description || post.excerpt || post.content.substring(0, 160),
-        images: post.image ? [post.image] : [],
-      },
-    }
+      path: `/blog/${slug}`,
+      keywords: post.tags && post.tags.length > 0 ? post.tags : [post.category || post.title],
+      images: post.image,
+      type: "article",
+      section: post.category,
+      tags: post.tags,
+      authors: post.author ? [post.author] : ["Zemin Ustası"],
+      publishedTime: post.published_at || post.created_at,
+      modifiedTime: post.updated_at,
+    })
   } catch (error) {
-    return {
-      title: 'Blog Yazısı Bulunamadı',
-      description: 'Aradığınız blog yazısı bulunamadı.',
-    }
+    return buildSeoMetadata({
+      title: "Blog Yazısı Bulunamadı",
+      description: "Aradığınız blog yazısı bulunamadı.",
+      path: "/blog",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    })
   }
 }
 
