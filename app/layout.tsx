@@ -8,6 +8,7 @@ import { CSSOptimizer } from "@/components/css-optimizer"
 import { PerformanceMonitor } from "@/components/performance-monitor"
 import GoogleAnalytics from "@/components/GoogleAnalytics"
 import UmamiAnalytics from "@/components/UmamiAnalytics"
+import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleTagManager"
 import { buildSeoMetadata, siteUrl } from "@/lib/seo"
 
 // Initialize the fonts with display swap for better performance
@@ -77,6 +78,9 @@ export default function RootLayout({
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
+        {/* Google Tag Manager */}
+        <GoogleTagManager />
+
         {/* Critical CSS optimization */}
         <CSSOptimizer />
         
@@ -120,6 +124,7 @@ export default function RootLayout({
         />
       </Head>
       <body className={`${poppins.className} antialiased`}>
+        <GoogleTagManagerNoscript />
         <GoogleAnalytics />
         <UmamiAnalytics />
         <ClientLayout>{children}</ClientLayout>
