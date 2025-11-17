@@ -85,9 +85,9 @@ export default function ClientComponents() {
       {/* Features Section */}
       <div className="min-h-screen bg-background p-8">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold text-center mb-6 text-foreground">
+          <h2 className="text-3xl font-bold text-center mb-6 text-foreground">
             Zeminlerinizde Estetiği ve Dayanıklılığı Bir Araya Getiriyoruz
-          </h1>
+          </h2>
           <p className="text-center text-gray-700 dark:text-gray-300 mb-12">
             Her Zeminin Özel Çözümü. Profesyonel zemin kaplamaları hizmetimizle yaşam alanlarınızı yeniden şekillendiriyoruz.
             Sektördeki deneyimimiz ve uzman ekibimizle her projeye özel çözümler sunarak, beklentilerinizi en üst düzeyde karşılıyoruz.
@@ -122,9 +122,9 @@ export default function ClientComponents() {
       <section className="min-h-screen bg-background p-8">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h1 className="text-3xl font-bold text-center mb-6 text-foreground">
+            <h2 className="text-3xl font-bold text-center mb-6 text-foreground">
               Son Blog Yazılarımız
-            </h1>
+            </h2>
             <p className="text-center text-gray-700 dark:text-gray-300 mb-12">
               Zemin kaplama, epoksi ve dekoratif zemin çözümleri hakkında güncel yazılar, ipuçları ve uzman görüşleri
             </p>
