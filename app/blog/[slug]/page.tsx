@@ -116,14 +116,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
          
          
-          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-            {post.category && (
-              <Badge className="bg-amber-500 text-white text-xs sm:text-sm px-3 py-1">{post.category}</Badge>
-            )}
-            {post.featured && (
-              <Badge className="bg-green-500 text-white text-xs sm:text-sm px-3 py-1">Öne Çıkan</Badge>
-            )}
-          </div>
+         
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-2xl max-w-4xl">{post.title}</h1>
           {post.excerpt && (
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl leading-relaxed drop-shadow-lg">{post.excerpt}</p>
