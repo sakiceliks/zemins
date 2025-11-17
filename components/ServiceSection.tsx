@@ -43,11 +43,11 @@ export default function ServicesSection() {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
+              <h2 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Faaliyet
                 <br />
                 Alanlarımız
-              </h1>
+              </h2>
 
               <div className="space-y-4 text-gray-100 text-lg leading-relaxed max-w-lg">
                 <p>
