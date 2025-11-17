@@ -33,9 +33,10 @@ export default function ContactButton({
   // Google Analytics Event Tracking Function
   const trackContactClick = (contactType: 'phone' | 'whatsapp', label?: string) => {
     if (typeof window !== 'undefined') {
+      const eventName = contactType === 'phone' ? 'call_click' : 'whatsapp_click'
       // GA4 Event Tracking
       if (window.gtag) {
-        window.gtag('event', 'contact_click', {
+        window.gtag('event', eventName, {
           event_category: 'Contact',
           event_label: label || `${contactType}_${trackingLabel || phoneNumber}`,
           contact_type: contactType,
@@ -49,7 +50,7 @@ export default function ContactButton({
       // Data Layer için (GTM kullanılıyorsa)
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'contact_click',
+          event: eventName,
           event_category: 'Contact',
           event_label: label || `${contactType}_${trackingLabel || phoneNumber}`,
           contact_type: contactType,
@@ -143,8 +144,9 @@ export function WhatsAppFloatingButton({
   const handleWhatsAppClick = () => {
     if (typeof window !== 'undefined') {
       // GA4 Event Tracking
+      const eventName = 'whatsapp_click'
       if (window.gtag) {
-        window.gtag('event', 'contact_click', {
+        window.gtag('event', eventName, {
           event_category: 'Contact',
           event_label: trackingLabel || `whatsapp_floating_${phoneNumber}`,
           contact_type: 'whatsapp',
@@ -158,7 +160,7 @@ export function WhatsAppFloatingButton({
       // Data Layer için (GTM kullanılıyorsa)
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'contact_click',
+          event: eventName,
           event_category: 'Contact',
           event_label: trackingLabel || `whatsapp_floating_${phoneNumber}`,
           contact_type: 'whatsapp',
@@ -210,8 +212,9 @@ export function PhoneFloatingButton({
   const handlePhoneClick = () => {
     if (typeof window !== 'undefined') {
       // GA4 Event Tracking
+      const eventName = 'call_click'
       if (window.gtag) {
-        window.gtag('event', 'contact_click', {
+        window.gtag('event', eventName, {
           event_category: 'Contact',
           event_label: trackingLabel || `phone_floating_${phoneNumber}`,
           contact_type: 'phone',
@@ -225,7 +228,7 @@ export function PhoneFloatingButton({
       // Data Layer için (GTM kullanılıyorsa)
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'contact_click',
+          event: eventName,
           event_category: 'Contact',
           event_label: trackingLabel || `phone_floating_${phoneNumber}`,
           contact_type: 'phone',
