@@ -140,19 +140,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end pb-8 sm:pb-12 md:pb-16">
           <div className="max-w-4xl w-full">
             {/* Back Button - Top */}
-            <div className="mb-6 sm:mb-8">
-              <Link href="/hizmetler">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="text-white border-white/80 hover:bg-white/20 hover:border-white bg-white/10 backdrop-blur-sm transition-all duration-300 group"
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                  <span className="hidden sm:inline">Hizmetlere Dön</span>
-                  <span className="sm:hidden">Geri</span>
-                </Button>
-              </Link>
-            </div>
+          
 
             {/* Title and Description */}
             <div className="space-y-4 sm:space-y-5">
