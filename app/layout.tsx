@@ -98,7 +98,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Zemin Ustası",
-              "url": "https://zeminustasi.com.tr",
+              "url": "https://www.zeminustasi.com.tr",
               "logo": "https://zeminustasi.com.tr/logo.png",
               "description": "Yenilikçi inşaat çözümleri için güvenilir ortağınız",
               "address": {

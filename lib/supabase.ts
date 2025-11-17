@@ -630,7 +630,7 @@ export function generateBlogPostJsonLd(post: BlogPost) {
     "author": {
       "@type": "Organization",
       "name": "Zemin Ustası",
-      "url": "https://zeminustasi.com.tr"
+      "url": "https://www.zeminustasi.com.tr"
     },
     "publisher": {
       "@type": "Organization",

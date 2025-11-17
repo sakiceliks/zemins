@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 const DEFAULT_SITE_NAME = "Zemin Ustası"
 const DEFAULT_SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://zeminustasi.com.tr").replace(/\/$/, "")
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.zeminustasi.com.tr").replace(/\/$/, "")
 const DEFAULT_OG_IMAGE = `${DEFAULT_SITE_URL}/logo.png`
 
 export const siteUrl = DEFAULT_SITE_URL

@@ -40,7 +40,7 @@ export default function ClientComponents() {
               "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "Organization"],
               "name": "BMÇ Zemin - Üsküdar Beton Silimi ve Parlatma",
               "alternateName": ["Üsküdar Beton Silimi", "Üsküdar Beton Parlatma", "İstanbul Zemin Hizmetleri"],
-              "url": "https://zeminustasi.com.tr",
+              "url": "https://www.zeminustasi.com.tr",
               "logo": "https://zeminustasi.com.tr/logo.png",
               "image": [
                 "https://zeminustasi.com.tr/images/beton-silimi.jpg",
