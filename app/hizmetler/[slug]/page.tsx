@@ -136,46 +136,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
         {/* Black Overlay */}
         <div className="absolute inset-0 z-10 bg-black/70"></div>
         
-        {/* Content Container */}
-        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end pb-8 sm:pb-12 md:pb-16">
-          <div className="max-w-4xl w-full">
-            {/* Back Button - Top */}
-            <div className="mb-6 sm:mb-8">
-              <Link href="/hizmetler">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="text-white border-white/80 hover:bg-white/20 hover:border-white bg-white/10 backdrop-blur-sm transition-all duration-300 group"
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                  <span className="hidden sm:inline">Hizmetlere Dön</span>
-                  <span className="sm:hidden">Geri</span>
-                </Button>
-              </Link>
-            </div>
 
-            {/* Title and Description */}
-            <div className="space-y-4 sm:space-y-5">
-              {/* Featured Badge */}
-              {service.featured && (
-                <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-xl">
-                  <Tag className="h-4 w-4" />
-                  <span>Öne Çıkan Hizmet</span>
-                </div>
-              )}
-              
-              {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight drop-shadow-2xl">
-                {service.title}
-              </h1>
-              
-              {/* Description */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl leading-relaxed drop-shadow-lg">
-                {service.description}
-              </p>
-            </div>
-          </div>
-        </div>
+       
       </section>
 
 
