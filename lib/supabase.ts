@@ -1,9 +1,100 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+type AnySupabaseClient = SupabaseClient<any, 'public', any>
+
+function canUseWebStorage(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    const key = '__sb_test__'
+    window.localStorage.setItem(key, '1')
+    window.localStorage.removeItem(key)
+    return true
+  } catch {
+    return false
+  }
+}
+
+class MemoryStorage implements Storage {
+  private store = new Map<string, string>()
+
+  get length() {
+    return this.store.size
+  }
+
+  clear(): void {
+    this.store.clear()
+  }
+
+  getItem(key: string): string | null {
+    return this.store.has(key) ? (this.store.get(key) as string) : null
+  }
+
+  key(index: number): string | null {
+    const keys = Array.from(this.store.keys())
+    return keys[index] ?? null
+  }
+
+  removeItem(key: string): void {
+    this.store.delete(key)
+  }
+
+  setItem(key: string, value: string): void {
+    this.store.set(key, value)
+  }
+}
+
+function createSupabaseClientSingleton(): AnySupabaseClient {
+  const g = globalThis as unknown as {
+    __supabase_public_client__?: AnySupabaseClient
+  }
+
+  if (g.__supabase_public_client__) return g.__supabase_public_client__
+
+  const hasStorage = canUseWebStorage()
+  const storage: Storage = hasStorage ? window.localStorage : new MemoryStorage()
+
+  g.__supabase_public_client__ = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      // Bu projede Supabase session'ı kalıcı tutmuyoruz (admin auth localStorage tabanlı).
+      // Storage erişimi bloklanan ortamlarda (Safari/ITP vb.) hata fırlatmayı da engelliyoruz.
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+      // Auth-helpers ile aynı storageKey'i paylaşmayalım (çoklu client uyarılarını azaltır).
+      storageKey: 'sb-public',
+      storage,
+    },
+  })
+
+  return g.__supabase_public_client__
+}
+
+export function getSupabaseClient(): AnySupabaseClient {
+  // Server-side'da da aynı anon client yeterli (cookie/session yönetmiyoruz).
+  if (typeof window === 'undefined') {
+    const g = globalThis as unknown as {
+      __supabase_public_server_client__?: AnySupabaseClient
+    }
+    if (!g.__supabase_public_server_client__) {
+      g.__supabase_public_server_client__ = createClient(supabaseUrl, supabaseAnonKey, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+          detectSessionInUrl: false,
+          storageKey: 'sb-public',
+        },
+      })
+    }
+    return g.__supabase_public_server_client__
+  }
+
+  return createSupabaseClientSingleton()
+}
+
+export const supabase = getSupabaseClient()
 
 // Types
 export interface Service {

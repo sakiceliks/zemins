@@ -14,7 +14,7 @@ if (!process.env.GOOGLE_GENAI_API_KEY && !process.env.GEMINI_API_KEY) {
 export const DEFAULT_GOOGLEAI_MODEL =
   process.env.GENKIT_MODEL ||
   process.env.GOOGLEAI_MODEL ||
-  'googleai/gemini-1.5-flash';
+  'googleai/gemini-2.0-flash';
 
 export const ai = genkit({
   plugins: [googleAI()],

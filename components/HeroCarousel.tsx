@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronRight, ChevronLeft, Circle } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { ActionButtons } from "./ActionButtons"
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { supabase } from "@/lib/supabase"
 import Link from 'next/link'
 
 interface HeroCarouselItem {
@@ -25,7 +25,6 @@ export function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
-  const supabase = createClientComponentClient()
 
   // Fetch hero carousel data
   useEffect(() => {

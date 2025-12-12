@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
-import { Upload, Wand2 } from "lucide-react"
+import { Copy, Download, RotateCcw, Upload, Wand2 } from "lucide-react"
 import { visualizeEpoxyFloor } from "@/app/ai/flows/visualize-epoxy-floow"
 import { processEpoxyImage } from "@/utils/epoxy-image-processor"
 
@@ -47,13 +47,25 @@ export default function EpoxyVisualizer() {
   const [isLoading, setIsLoading] = useState(false)
   const [resultImage, setResultImage] = useState<string | null>(null)
   const [styleDescription, setStyleDescription] = useState<string>("")
+  const [compareValue, setCompareValue] = useState<number>(50)
+  const [viewMode, setViewMode] = useState<"compare" | "split">("compare")
   const { toast } = useToast()
+
+  // objectURL cleanup
+  useEffect(() => {
+    return () => {
+      if (photoPreview?.startsWith("blob:")) URL.revokeObjectURL(photoPreview)
+    }
+  }, [photoPreview])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
       setPhotoFile(file)
-      setPhotoPreview(URL.createObjectURL(file))
+      setPhotoPreview((prev) => {
+        if (prev?.startsWith("blob:")) URL.revokeObjectURL(prev)
+        return URL.createObjectURL(file)
+      })
 
       const reader = new FileReader()
       reader.onloadend = () => {
@@ -61,6 +73,60 @@ export default function EpoxyVisualizer() {
       }
       reader.readAsDataURL(file)
       setResultImage(null)
+      setStyleDescription("")
+      setCompareValue(50)
+    }
+  }
+
+  const handleReset = () => {
+    setPhotoFile(null)
+    setPhotoPreview((prev) => {
+      if (prev?.startsWith("blob:")) URL.revokeObjectURL(prev)
+      return null
+    })
+    setPhotoDataUri("")
+    setEpoxyStyle("")
+    setColorScheme("")
+    setResultImage(null)
+    setStyleDescription("")
+    setCompareValue(50)
+    setViewMode("compare")
+  }
+
+  const canCompare = useMemo(() => Boolean(photoPreview && resultImage), [photoPreview, resultImage])
+
+  const handleDownload = () => {
+    if (!resultImage) return
+    try {
+      const a = document.createElement("a")
+      a.href = resultImage
+      a.download = `epoxy-gorsellestirme-${Date.now()}.jpg`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      toast({ title: "İndiriliyor", description: "Görsel cihazınıza indiriliyor." })
+    } catch (error) {
+      console.error("Download error:", error)
+      toast({
+        title: "İndirme Başarısız",
+        description: "Görsel indirilemedi. Lütfen tekrar deneyin.",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleCopyDescription = async () => {
+    if (!styleDescription) return
+    try {
+      await navigator.clipboard.writeText(styleDescription)
+      toast({ title: "Kopyalandı", description: "Açıklama panoya kopyalandı." })
+    } catch (error) {
+      console.error("Clipboard error:", error)
+      toast({
+        title: "Kopyalama Başarısız",
+        description: "Panoya kopyalanamadı. Tarayıcı izinlerini kontrol edin.",
+        variant: "destructive",
+      })
     }
   }
 
@@ -210,45 +276,125 @@ export default function EpoxyVisualizer() {
                     </>
                   )}
                 </Button>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setViewMode((m) => (m === "compare" ? "split" : "compare"))}
+                    disabled={!canCompare}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    {viewMode === "compare" ? "Yan Yana" : "Karşılaştır"}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleReset}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10"
+                  >
+                    <RotateCcw className="mr-2 h-4 w-4" />
+                    Sıfırla
+                  </Button>
+                </div>
               </div>
 
-              <div className="relative w-full bg-gradient-to-br px-5 py-6 from-gray-900 to-gray-800 rounded-lg flex items-center justify-center p-4 border border-gray-700">
-                {!photoPreview && (
-                  <div className="text-center text-gray-400">
+              <div className="relative w-full bg-gradient-to-br px-5 py-6 from-gray-900 to-gray-800 rounded-lg flex flex-col items-center justify-center p-4 border border-gray-700">
+                {!photoPreview ? (
+                  <div className="text-center text-gray-400 py-12">
                     <Upload className="mx-auto h-12 w-12 mb-2 text-[#ffbf00]" />
-                    <p>Mekan fotoğrafınız burada görünecek</p>
+                    <p className="font-medium">Mekan fotoğrafınız burada görünecek</p>
+                    <p className="text-sm text-gray-500 mt-1">Önce fotoğraf yükleyin, sonra stil seçip görselleştirin.</p>
                   </div>
-                )}
+                ) : canCompare && viewMode === "compare" ? (
+                  <div className="w-full">
+                    <div className="relative w-full min-h-[340px] md:min-h-[420px] bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700">
+                      <Image
+                        src={photoPreview || "/placeholder.svg"}
+                        alt="Orijinal Mekan"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          clipPath: `inset(0 ${100 - compareValue}% 0 0)`,
+                        }}
+                      >
+                        <Image
+                          src={resultImage || "/placeholder.svg"}
+                          alt={styleDescription || "Görselleştirilmiş Epoxy Zemin"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full w-full">
-                  {photoPreview && (
+                      {/* Divider */}
+                      <div
+                        className="absolute top-0 bottom-0 w-[2px] bg-[#ffbf00] shadow-[0_0_0_1px_rgba(0,0,0,0.35)]"
+                        style={{ left: `${compareValue}%` }}
+                      />
+
+                      {/* Labels */}
+                      <div className="absolute top-3 left-3 bg-black/70 text-white px-3 py-2 text-xs rounded-md border border-gray-600">
+                        Orijinal
+                      </div>
+                      <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-2 text-xs rounded-md border border-gray-600">
+                        Epoxy
+                      </div>
+                    </div>
+
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between text-xs text-gray-300 mb-2">
+                        <span>Orijinal</span>
+                        <span>Karşılaştır</span>
+                        <span>Epoxy</span>
+                      </div>
+                      <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={compareValue}
+                        onChange={(e) => setCompareValue(Number(e.target.value))}
+                        className="w-full accent-[#ffbf00]"
+                        aria-label="Önce/Sonra karşılaştırma"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full w-full">
                     <div className="relative h-full min-h-[300px] bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700">
                       <Image
                         src={photoPreview || "/placeholder.svg"}
                         alt="Orijinal Mekan"
                         fill
-                        className="object-cover rounded-lg hover:scale-105 transition-transform duration-200"
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute bottom-3 left-3 bg-black/80 text-white px-3 py-2 text-sm rounded-md font-medium border border-gray-600">
                         Orijinal Mekan
                       </div>
                     </div>
-                  )}
 
-                  {resultImage && (
                     <div className="relative h-full min-h-[300px] bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700">
-                      <Image
-                        src={resultImage || "/placeholder.svg"}
-                        alt={styleDescription || "Görselleştirilmiş Epoxy Zemin"}
-                        fill
-                        className="object-cover rounded-lg hover:scale-105 transition-transform duration-200"
-                      />
-                      {/* <div className="absolute bottom-3 left-3 bg-[#ffbf00] text-black px-3 py-2 text-sm rounded-md font-medium">
-                        {styleDescription || "Epoxy Zemin"}
-                      </div> */}
+                      {resultImage ? (
+                        <Image
+                          src={resultImage || "/placeholder.svg"}
+                          alt={styleDescription || "Görselleştirilmiş Epoxy Zemin"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+                          <p className="text-sm">Sonuç burada görünecek</p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {isLoading && (
                   <div className="absolute inset-0 bg-[#1a1a1a]/95 flex flex-col items-center justify-center rounded-lg backdrop-blur-sm">
@@ -259,6 +405,29 @@ export default function EpoxyVisualizer() {
                     </div>
                   </div>
                 )}
+
+                <div className="mt-4 w-full flex flex-wrap gap-2 justify-end">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleCopyDescription}
+                    disabled={!styleDescription}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    <Copy className="mr-2 h-4 w-4" />
+                    Açıklamayı Kopyala
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleDownload}
+                    disabled={!resultImage}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Görseli İndir
+                  </Button>
+                </div>
               </div>
             </div>
 

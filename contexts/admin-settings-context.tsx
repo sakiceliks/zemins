@@ -23,14 +23,14 @@ export function AdminSettingsProvider({ children }: { children: ReactNode }) {
 
   // Local storage'dan ayarları yükle
   useEffect(() => {
-    const savedSettings = localStorage.getItem('admin-settings')
-    if (savedSettings) {
-      try {
+    try {
+      const savedSettings = localStorage.getItem('admin-settings')
+      if (savedSettings) {
         const parsedSettings = JSON.parse(savedSettings)
         setSettings({ ...defaultSettings, ...parsedSettings })
-      } catch (error) {
-        console.error('Error parsing admin settings:', error)
       }
+    } catch (error) {
+      console.warn('Admin ayarları storage erişilemedi/okunamadı:', error)
     }
   }, [])
 
@@ -38,7 +38,11 @@ export function AdminSettingsProvider({ children }: { children: ReactNode }) {
   const updateSettings = (newSettings: Partial<AdminSettings>) => {
     const updatedSettings = { ...settings, ...newSettings }
     setSettings(updatedSettings)
-    localStorage.setItem('admin-settings', JSON.stringify(updatedSettings))
+    try {
+      localStorage.setItem('admin-settings', JSON.stringify(updatedSettings))
+    } catch (error) {
+      console.warn('Admin ayarları storage yazılamadı:', error)
+    }
   }
 
   // Auth check'i aç/kapat
