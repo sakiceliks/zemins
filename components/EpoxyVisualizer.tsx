@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
 import { Upload, Wand2 } from "lucide-react"
 import { visualizeEpoxyFloor } from "@/app/ai/flows/visualize-epoxy-floow"
+import { processEpoxyImage } from "@/utils/epoxy-image-processor"
 
 const epoxyStyles = [
   "Metallic Epoksi",
@@ -77,19 +78,38 @@ export default function EpoxyVisualizer() {
     setResultImage(null)
 
     try {
+      // Önce AI'dan açıklama al
       const result = await visualizeEpoxyFloor({
         photoDataUri,
         epoxyStyle,
         ...(colorScheme && { colorScheme }),
       })
 
-      setResultImage(result.visualizedImage)
+      if (!result.styleDescription) {
+        throw new Error('Açıklama oluşturulamadı.')
+      }
+
+      // Client-side'da görseli işle
+      const processedImage = await processEpoxyImage(
+        photoDataUri,
+        epoxyStyle,
+        colorScheme || undefined
+      )
+
+      setResultImage(processedImage)
       setStyleDescription(result.styleDescription)
     } catch (error) {
       console.error("Görselleştirme başarısız:", error)
+      
+      // Extract error message
+      let errorMessage = "Epoxy zemin görselleştirilemedi. Lütfen başka bir fotoğraf veya stil deneyin."
+      if (error instanceof Error) {
+        errorMessage = error.message || errorMessage
+      }
+      
       toast({
         title: "Görselleştirme Başarısız",
-        description: "Epoxy zemin görselleştirilemedi. Lütfen başka bir fotoğraf veya stil deneyin.",
+        description: errorMessage,
         variant: "destructive",
       })
     } finally {
@@ -244,7 +264,11 @@ export default function EpoxyVisualizer() {
 
             {styleDescription && (
               <div className="mt-6 p-4 bg-gradient-to-br px-5 py-6 from-gray-900 to-gray-800 rounded-lg border border-gray-700">
-                <p className="text-center font-medium text-white">{styleDescription}</p>
+                <p className="text-center text-sm md:text-base font-medium text-white leading-relaxed">
+                  {styleDescription.length > 200 
+                    ? styleDescription.substring(0, 197) + '...' 
+                    : styleDescription}
+                </p>
               </div>
             )}
           </CardContent>

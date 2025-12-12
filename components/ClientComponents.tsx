@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import Head from "next/head";
+import Script from "next/script";
 import { ChevronRight } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { HoverButton } from "@/components/ui/hover-button";
@@ -19,59 +19,47 @@ export default function ClientComponents() {
     <div className="flex min-h-screen flex-col">
       <ScrollProgress />
 
-      {/* SEO Head */}
-      <Head>
-        <title>Üsküdar Beton Silimi & Beton Parlatma | BMÇ Zemin Profesyonel Hizmetler</title>
-        <meta
-          name="description"
-          content="Üsküdar'da beton silimi ve beton parlatma hizmetlerinde uzman ekip. Endüstriyel ve ticari alanlar için uygun fiyatlı, garantili ve hızlı çözümler."
-        />
-        <meta
-          name="keywords"
-          content="Üsküdar beton silimi, Üsküdar beton parlatma, beton temizleme, zemin parlatma, BMÇ Zemin"
-        />
-
-        {/* JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "Organization"],
-              "name": "BMÇ Zemin - Üsküdar Beton Silimi ve Parlatma",
-              "alternateName": ["Üsküdar Beton Silimi", "Üsküdar Beton Parlatma", "İstanbul Zemin Hizmetleri"],
-              "url": "https://www.zeminustasi.com.tr",
-              "logo": "https://zeminustasi.com.tr/logo.png",
-              "image": [
-                "https://zeminustasi.com.tr/images/beton-silimi.jpg",
-                "https://zeminustasi.com.tr/images/beton-parlatma.jpg"
-              ],
-              "description": "Zeminlerinizde estetiği ve dayanıklılığı bir araya getiren profesyonel çözümler sunuyoruz. Üsküdar ve İstanbul bölgesinde beton silimi, parlatma ve yüzey düzeltme hizmetleri.",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Fatih, Sayfiye Sk. No:24 D:3",
-                "addressLocality": "Üsküdar",
-                "addressRegion": "İstanbul",
-                "postalCode": "34920",
-                "addressCountry": "TR"
-              },
-              "geo": { "@type": "GeoCoordinates", "latitude": 41.0221, "longitude": 29.0236 },
-              "telephone": "+90 531 281 29 58",
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Zemin Kaplama ve Parlatma Hizmetleri",
-                "itemListElement": [
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beton Silimi", "description": "Her zemine özel pürüzsüz ve dayanıklı beton silimi hizmeti." } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beton Parlatma", "description": "Zeminlerin estetik görünümünü artıran yüksek parlaklıkta beton parlatma." } }
-                ]
-              },
-              "founder": { "@type": "Person", "name": "Ümit Kesik" },
-              "foundingDate": "2010",
-              "numberOfEmployees": { "@type": "QuantitativeValue", "value": 15 }
-            })
-          }}
-        />
-      </Head>
+      {/* JSON-LD Schema */}
+      <Script
+        id="local-business-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "Organization"],
+            "name": "BMÇ Zemin - Üsküdar Beton Silimi ve Parlatma",
+            "alternateName": ["Üsküdar Beton Silimi", "Üsküdar Beton Parlatma", "İstanbul Zemin Hizmetleri"],
+            "url": "https://www.zeminustasi.com.tr",
+            "logo": "https://zeminustasi.com.tr/logo.png",
+            "image": [
+              "https://zeminustasi.com.tr/images/beton-silimi.jpg",
+              "https://zeminustasi.com.tr/images/beton-parlatma.jpg"
+            ],
+            "description": "Zeminlerinizde estetiği ve dayanıklılığı bir araya getiren profesyonel çözümler sunuyoruz. Üsküdar ve İstanbul bölgesinde beton silimi, parlatma ve yüzey düzeltme hizmetleri.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Fatih, Sayfiye Sk. No:24 D:3",
+              "addressLocality": "Üsküdar",
+              "addressRegion": "İstanbul",
+              "postalCode": "34920",
+              "addressCountry": "TR"
+            },
+            "geo": { "@type": "GeoCoordinates", "latitude": 41.0221, "longitude": 29.0236 },
+            "telephone": "+90 531 281 29 58",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Zemin Kaplama ve Parlatma Hizmetleri",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beton Silimi", "description": "Her zemine özel pürüzsüz ve dayanıklı beton silimi hizmeti." } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beton Parlatma", "description": "Zeminlerin estetik görünümünü artıran yüksek parlaklıkta beton parlatma." } }
+              ]
+            },
+            "founder": { "@type": "Person", "name": "Ümit Kesik" },
+            "foundingDate": "2010",
+            "numberOfEmployees": { "@type": "QuantitativeValue", "value": 15 }
+          })
+        }}
+      />
 
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden h-screen">

@@ -33,19 +33,28 @@ export function CSSOptimizer({
         setIsLoaded(true);
       });
 
-    // Load non-critical CSS asynchronously
+    // Load non-critical CSS asynchronously (only if file exists)
     nonCriticalCSSPaths.forEach(cssPath => {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = cssPath;
-      link.media = 'print';
-      link.onload = () => {
-        link.media = 'all';
-      };
-      link.onerror = () => {
-        console.warn(`Failed to load non-critical CSS: ${cssPath}`);
-      };
-      document.head.appendChild(link);
+      // Check if file exists before trying to load
+      fetch(cssPath, { method: 'HEAD' })
+        .then(response => {
+          if (response.ok) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = cssPath;
+            link.media = 'print';
+            link.onload = () => {
+              link.media = 'all';
+            };
+            link.onerror = () => {
+              console.warn(`Failed to load non-critical CSS: ${cssPath}`);
+            };
+            document.head.appendChild(link);
+          }
+        })
+        .catch(() => {
+          // Silently ignore if file doesn't exist
+        });
     });
   }, [criticalCSSPath, nonCriticalCSSPaths]);
 

@@ -30,7 +30,13 @@ export type VisualizeEpoxyFloorOutput = z.infer<typeof VisualizeEpoxyFloorOutput
 export async function visualizeEpoxyFloor(
   input: VisualizeEpoxyFloorInput
 ): Promise<VisualizeEpoxyFloorOutput> {
-  return visualizeEpoxyFloorFlow(input);
+  try {
+    return await visualizeEpoxyFloorFlow(input);
+  } catch (error) {
+    console.error('visualizeEpoxyFloor error:', error);
+    // Re-throw to let the client handle it
+    throw error;
+  }
 }
 
 const epoxyPrompt = ai.definePrompt({
@@ -71,24 +77,63 @@ const visualizeEpoxyFloorFlow = ai.defineFlow(
     outputSchema: VisualizeEpoxyFloorOutputSchema,
   },
   async input => {
-    const promptText = input.colorScheme 
-      ? `Visualize this space with ${input.epoxyStyle} epoxy floor in ${input.colorScheme} colors.` 
-      : `Visualize this space with ${input.epoxyStyle} epoxy floor.`;
-    
-    const {media, text} = await ai.generate({
-      model: 'googleai/gemini-2.0-flash-preview-image-generation',
-      prompt: [
-        {media: {url: input.photoDataUri}},
-        {text: promptText},
-      ],
-      config: {
-        responseModalities: ['TEXT', 'IMAGE'],
-      },
-    });
+    try {
+      // Input validation
+      if (!input.photoDataUri || !input.photoDataUri.startsWith('data:')) {
+        throw new Error('Geçersiz fotoğraf formatı. Lütfen geçerli bir görsel yükleyin.');
+      }
 
-    return {
-      visualizedImage: media!.url,
-      styleDescription: text || `${input.colorScheme ? ` ${input.colorScheme} renklerinde ${input.epoxyStyle} Uygulaması` : ''}`
-    };
+      if (!input.epoxyStyle) {
+        throw new Error('Epoxy stili seçilmedi.');
+      }
+
+      const promptText = input.colorScheme 
+        ? `Bu mekana ${input.epoxyStyle} epoksi zemin ${input.colorScheme} renklerinde uygulandığında nasıl görüneceğini kısaca ve Türkçe olarak açıkla. Maksimum 2 cümle, sadece görsel özellikleri belirt.` 
+        : `Bu mekana ${input.epoxyStyle} epoksi zemin uygulandığında nasıl görüneceğini kısaca ve Türkçe olarak açıkla. Maksimum 2 cümle, sadece görsel özellikleri belirt.`;
+      
+      // Gemini models support image analysis but not image generation
+      // We'll use gemini-2.5-flash for image analysis and short Turkish description
+      const result = await ai.generate({
+        model: 'googleai/gemini-2.5-flash',
+        prompt: [
+          {media: {url: input.photoDataUri}},
+          {text: promptText},
+        ],
+        config: {
+          responseModalities: ['TEXT'],
+        },
+      });
+
+      // Extract and format the description - keep it short and in Turkish
+      let styleDescription = result.text || '';
+      
+      // If description is too long, truncate it
+      if (styleDescription.length > 150) {
+        styleDescription = styleDescription.substring(0, 147) + '...';
+      }
+      
+      // Fallback if no description
+      if (!styleDescription || styleDescription.trim().length === 0) {
+        styleDescription = input.colorScheme 
+          ? `${input.colorScheme} renklerinde ${input.epoxyStyle} uygulaması`
+          : `${input.epoxyStyle} uygulaması`;
+      }
+
+      // Görsel işleme client-side'da yapılıyor, burada sadece açıklama döndürüyoruz
+      // Client-side'da processEpoxyImage fonksiyonu görseli işleyecek
+      return {
+        visualizedImage: input.photoDataUri, // Client-side'da işlenecek
+        styleDescription: styleDescription
+      };
+    } catch (error) {
+      // Log the error for debugging
+      console.error('Epoxy görselleştirme hatası:', error);
+      
+      // Re-throw with a user-friendly message
+      if (error instanceof Error) {
+        throw new Error(`Görselleştirme başarısız: ${error.message}`);
+      }
+      throw new Error('Görselleştirme sırasında beklenmeyen bir hata oluştu.');
+    }
   }
 );
