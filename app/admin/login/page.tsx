@@ -22,10 +22,10 @@ export default function AdminLogin() {
 
   // Local storage'dan auth check ayarını kontrol et
   useEffect(() => {
-    const savedSettings = localStorage.getItem('admin-settings')
-    
-    if (savedSettings) {
-      try {
+    try {
+      const savedSettings = localStorage.getItem('admin-settings')
+      
+      if (savedSettings) {
         const parsedSettings = JSON.parse(savedSettings)
         const isAuthCheckEnabled = parsedSettings.authCheckEnabled ?? true
         setAuthCheckEnabled(isAuthCheckEnabled)
@@ -35,17 +35,20 @@ export default function AdminLogin() {
           router.replace("/admin")
           return
         }
-      } catch (error) {
-        console.error('Error parsing admin settings:', error)
+      } else {
+        // Local storage'da ayar yoksa varsayılan olarak false (auth check kapalı)
+        setAuthCheckEnabled(false)
+        // Auth check kapalıysa direkt admin paneline yönlendir
+        router.replace("/admin")
+        return
       }
-    } else {
-      // Local storage'da ayar yoksa varsayılan olarak false (auth check kapalı)
-      setAuthCheckEnabled(false)
-      // Auth check kapalıysa direkt admin paneline yönlendir
-      router.replace("/admin")
-      return
+    } catch (error) {
+      // Storage erişimi engelliyse (Safari/ITP vb.), login ekranını yine de çalıştır.
+      console.warn('Admin ayarları storage erişilemedi:', error)
+      setAuthCheckEnabled(true)
+    } finally {
+      setCheckingSettings(false)
     }
-    setCheckingSettings(false)
   }, [])
 
 async function handleLogin(e: React.FormEvent) {

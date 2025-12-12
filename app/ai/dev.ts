@@ -1,4 +1,4 @@
 import { config } from 'dotenv';
 config();
 
-import '@/ai/flows/visualize-stone-carpet.ts';
+import '@/app/ai/flows/visualize-epoxy-floow';

@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
-import { Upload, Wand2 } from "lucide-react"
+import { Copy, Download, Maximize2, Minimize2, RotateCcw, Upload, Wand2 } from "lucide-react"
 import { visualizeEpoxyFloor } from "@/app/ai/flows/visualize-epoxy-floow"
 import { processEpoxyImage } from "@/utils/epoxy-image-processor"
 
@@ -47,13 +47,26 @@ export default function EpoxyVisualizer() {
   const [isLoading, setIsLoading] = useState(false)
   const [resultImage, setResultImage] = useState<string | null>(null)
   const [styleDescription, setStyleDescription] = useState<string>("")
+  const [compareValue, setCompareValue] = useState<number>(50)
+  const [viewMode, setViewMode] = useState<"compare" | "split">("compare")
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const { toast } = useToast()
+
+  // objectURL cleanup
+  useEffect(() => {
+    return () => {
+      if (photoPreview?.startsWith("blob:")) URL.revokeObjectURL(photoPreview)
+    }
+  }, [photoPreview])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
       setPhotoFile(file)
-      setPhotoPreview(URL.createObjectURL(file))
+      setPhotoPreview((prev) => {
+        if (prev?.startsWith("blob:")) URL.revokeObjectURL(prev)
+        return URL.createObjectURL(file)
+      })
 
       const reader = new FileReader()
       reader.onloadend = () => {
@@ -61,6 +74,67 @@ export default function EpoxyVisualizer() {
       }
       reader.readAsDataURL(file)
       setResultImage(null)
+      setStyleDescription("")
+      setCompareValue(50)
+    }
+  }
+
+  const handleReset = () => {
+    setPhotoFile(null)
+    setPhotoPreview((prev) => {
+      if (prev?.startsWith("blob:")) URL.revokeObjectURL(prev)
+      return null
+    })
+    setPhotoDataUri("")
+    setEpoxyStyle("")
+    setColorScheme("")
+    setResultImage(null)
+    setStyleDescription("")
+    setCompareValue(50)
+    setViewMode("compare")
+  }
+
+  const canCompare = useMemo(() => Boolean(photoPreview && resultImage), [photoPreview, resultImage])
+  const isReady = useMemo(() => Boolean(photoDataUri && epoxyStyle), [photoDataUri, epoxyStyle])
+  const currentStep = useMemo(() => {
+    if (!photoDataUri) return 1
+    if (!epoxyStyle) return 2
+    if (!resultImage) return 3
+    return 4
+  }, [photoDataUri, epoxyStyle, resultImage])
+
+  const handleDownload = () => {
+    if (!resultImage) return
+    try {
+      const a = document.createElement("a")
+      a.href = resultImage
+      a.download = `epoxy-gorsellestirme-${Date.now()}.jpg`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      toast({ title: "İndiriliyor", description: "Görsel cihazınıza indiriliyor." })
+    } catch (error) {
+      console.error("Download error:", error)
+      toast({
+        title: "İndirme Başarısız",
+        description: "Görsel indirilemedi. Lütfen tekrar deneyin.",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleCopyDescription = async () => {
+    if (!styleDescription) return
+    try {
+      await navigator.clipboard.writeText(styleDescription)
+      toast({ title: "Kopyalandı", description: "Açıklama panoya kopyalandı." })
+    } catch (error) {
+      console.error("Clipboard error:", error)
+      toast({
+        title: "Kopyalama Başarısız",
+        description: "Panoya kopyalanamadı. Tarayıcı izinlerini kontrol edin.",
+        variant: "destructive",
+      })
     }
   }
 
@@ -129,6 +203,34 @@ export default function EpoxyVisualizer() {
 
         <Card className="max-w-5xl mx-auto bg-gradient-to-br px-5 py-6 from-gray-800 to-gray-700 border-gray-700">
           <CardContent className="p-4 md:p-8">
+            {/* Stepper */}
+            <div className="mb-6 grid grid-cols-4 gap-2 text-xs md:text-sm">
+              {[
+                { n: 1, label: "Fotoğraf" },
+                { n: 2, label: "Stil" },
+                { n: 3, label: "Görselleştir" },
+                { n: 4, label: "Sonuç" },
+              ].map((s) => {
+                const isActive = currentStep === s.n
+                const isDone = currentStep > s.n
+                return (
+                  <div
+                    key={s.n}
+                    className={[
+                      "rounded-md border px-3 py-2",
+                      isActive ? "border-[#ffbf00] bg-[#ffbf00]/10 text-white" : "border-gray-700 text-gray-300",
+                      isDone ? "opacity-100" : "opacity-90",
+                    ].join(" ")}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold">{s.n}</span>
+                      <span className="truncate">{s.label}</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div className="flex flex-col gap-6">
                 <div>
@@ -210,45 +312,145 @@ export default function EpoxyVisualizer() {
                     </>
                   )}
                 </Button>
-              </div>
 
-              <div className="relative w-full bg-gradient-to-br px-5 py-6 from-gray-900 to-gray-800 rounded-lg flex items-center justify-center p-4 border border-gray-700">
-                {!photoPreview && (
-                  <div className="text-center text-gray-400">
-                    <Upload className="mx-auto h-12 w-12 mb-2 text-[#ffbf00]" />
-                    <p>Mekan fotoğrafınız burada görünecek</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setViewMode((m) => (m === "compare" ? "split" : "compare"))}
+                    disabled={!canCompare}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    {viewMode === "compare" ? "Yan Yana" : "Karşılaştır"}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleReset}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10"
+                  >
+                    <RotateCcw className="mr-2 h-4 w-4" />
+                    Sıfırla
+                  </Button>
+                </div>
+
+                {!isReady && (
+                  <div className="rounded-lg border border-gray-700 bg-black/20 px-4 py-3 text-sm text-gray-300">
+                    <span className="font-medium text-white">İpucu:</span> En iyi sonuç için zeminin net göründüğü, iyi aydınlatılmış bir fotoğraf yükleyin.
                   </div>
                 )}
+              </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full w-full">
-                  {photoPreview && (
+              <div
+                className={[
+                  "relative w-full bg-gradient-to-br px-5 py-6 from-gray-900 to-gray-800 rounded-lg flex flex-col items-center justify-center p-4 border border-gray-700",
+                  isFullscreen ? "fixed inset-0 z-50 m-0 rounded-none border-0" : "",
+                ].join(" ")}
+              >
+                {!photoPreview ? (
+                  <div className="text-center text-gray-400 py-12">
+                    <Upload className="mx-auto h-12 w-12 mb-2 text-[#ffbf00]" />
+                    <p className="font-medium">Mekan fotoğrafınız burada görünecek</p>
+                    <p className="text-sm text-gray-500 mt-1">Önce fotoğraf yükleyin, sonra stil seçip görselleştirin.</p>
+                  </div>
+                ) : canCompare && viewMode === "compare" ? (
+                  <div className="w-full">
+                    <div className="relative w-full min-h-[340px] md:min-h-[420px] bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700">
+                      <Image
+                        src={photoPreview || "/placeholder.svg"}
+                        alt="Orijinal Mekan"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          clipPath: `inset(0 ${100 - compareValue}% 0 0)`,
+                        }}
+                      >
+                        <Image
+                          src={resultImage || "/placeholder.svg"}
+                          alt={styleDescription || "Görselleştirilmiş Epoxy Zemin"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+
+                      {/* Divider */}
+                      <div
+                        className="absolute top-0 bottom-0 w-[2px] bg-[#ffbf00] shadow-[0_0_0_1px_rgba(0,0,0,0.35)]"
+                        style={{ left: `${compareValue}%` }}
+                      />
+                      {/* Handle */}
+                      <div
+                        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-[#ffbf00] text-black grid place-items-center shadow-lg border border-black/20"
+                        style={{ left: `${compareValue}%` }}
+                        aria-hidden="true"
+                      >
+                        <div className="h-5 w-[2px] bg-black/60 rounded-full" />
+                      </div>
+
+                      {/* Labels */}
+                      <div className="absolute top-3 left-3 bg-black/70 text-white px-3 py-2 text-xs rounded-md border border-gray-600">
+                        Orijinal
+                      </div>
+                      <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-2 text-xs rounded-md border border-gray-600">
+                        Epoxy
+                      </div>
+                    </div>
+
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between text-xs text-gray-300 mb-2">
+                        <span>Orijinal</span>
+                        <span>Karşılaştır</span>
+                        <span>Epoxy</span>
+                      </div>
+                      <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={compareValue}
+                        onChange={(e) => setCompareValue(Number(e.target.value))}
+                        className="w-full accent-[#ffbf00]"
+                        aria-label="Önce/Sonra karşılaştırma"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full w-full">
                     <div className="relative h-full min-h-[300px] bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700">
                       <Image
                         src={photoPreview || "/placeholder.svg"}
                         alt="Orijinal Mekan"
                         fill
-                        className="object-cover rounded-lg hover:scale-105 transition-transform duration-200"
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute bottom-3 left-3 bg-black/80 text-white px-3 py-2 text-sm rounded-md font-medium border border-gray-600">
                         Orijinal Mekan
                       </div>
                     </div>
-                  )}
 
-                  {resultImage && (
                     <div className="relative h-full min-h-[300px] bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700">
-                      <Image
-                        src={resultImage || "/placeholder.svg"}
-                        alt={styleDescription || "Görselleştirilmiş Epoxy Zemin"}
-                        fill
-                        className="object-cover rounded-lg hover:scale-105 transition-transform duration-200"
-                      />
-                      {/* <div className="absolute bottom-3 left-3 bg-[#ffbf00] text-black px-3 py-2 text-sm rounded-md font-medium">
-                        {styleDescription || "Epoxy Zemin"}
-                      </div> */}
+                      {resultImage ? (
+                        <Image
+                          src={resultImage || "/placeholder.svg"}
+                          alt={styleDescription || "Görselleştirilmiş Epoxy Zemin"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 gap-2">
+                          <p className="text-sm">Sonuç burada görünecek</p>
+                          <p className="text-xs text-gray-500">Görselleştir butonuna basın.</p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {isLoading && (
                   <div className="absolute inset-0 bg-[#1a1a1a]/95 flex flex-col items-center justify-center rounded-lg backdrop-blur-sm">
@@ -259,6 +461,39 @@ export default function EpoxyVisualizer() {
                     </div>
                   </div>
                 )}
+
+                <div className="mt-4 w-full flex flex-wrap gap-2 justify-end">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setIsFullscreen((v) => !v)}
+                    disabled={!photoPreview}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    {isFullscreen ? <Minimize2 className="mr-2 h-4 w-4" /> : <Maximize2 className="mr-2 h-4 w-4" />}
+                    {isFullscreen ? "Küçült" : "Tam Ekran"}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleCopyDescription}
+                    disabled={!styleDescription}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    <Copy className="mr-2 h-4 w-4" />
+                    Açıklamayı Kopyala
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleDownload}
+                    disabled={!resultImage}
+                    className="bg-transparent border-gray-600 text-white hover:bg-white/10 disabled:opacity-40"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Görseli İndir
+                  </Button>
+                </div>
               </div>
             </div>
 

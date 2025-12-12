@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { ImageUpload } from '@/components/ui/image-upload';
 import { useToast } from '@/hooks/use-toast';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { supabase } from '@/lib/supabase';
 
 interface HeroCarouselItem {
   id: string;
@@ -34,7 +34,6 @@ export default function HeroCarouselAdmin() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   
-  const supabase = createClientComponentClient();
   const { toast } = useToast();
 
   // Form state

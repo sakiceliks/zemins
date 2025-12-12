@@ -6,7 +6,7 @@
 
 
 import {z} from 'genkit';
-import { ai } from '../genkit';
+import { ai, DEFAULT_GOOGLEAI_MODEL } from '../genkit';
 
 const VisualizeEpoxyFloorInputSchema = z.object({
   photoDataUri: z
@@ -39,37 +39,6 @@ export async function visualizeEpoxyFloor(
   }
 }
 
-const epoxyPrompt = ai.definePrompt({
-  name: 'visualizeEpoxyFloorPrompt',
-  input: {schema: VisualizeEpoxyFloorInputSchema},
-  output: {schema: VisualizeEpoxyFloorOutputSchema},
-  prompt: `Visualize how the specified epoxy floor style would look in the provided space.
-
-Epoxy Style: {{{epoxyStyle}}}
-Color Scheme: {{colorScheme}}
-Photo: {{media url=photoDataUri}}
-
-Generate a photorealistic visualization of the epoxy floor in this space. Include:
-- Accurate reflections based on lighting
-- Realistic material texture
-- Proper perspective and shadows
-- Seamless integration with the existing space
-
-Return the result as a data URI and a description of the style.`,  
-  config: {
-    safetySettings: [
-      {
-        category: 'HARM_CATEGORY_HATE_SPEECH',
-        threshold: 'BLOCK_ONLY_HIGH',
-      },
-      {
-        category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-        threshold: 'BLOCK_NONE',
-      }
-    ],
-  },
-});
-
 const visualizeEpoxyFloorFlow = ai.defineFlow(
   {
     name: 'visualizeEpoxyFloorFlow',
@@ -91,10 +60,10 @@ const visualizeEpoxyFloorFlow = ai.defineFlow(
         ? `Bu mekana ${input.epoxyStyle} epoksi zemin ${input.colorScheme} renklerinde uygulandığında nasıl görüneceğini kısaca ve Türkçe olarak açıkla. Maksimum 2 cümle, sadece görsel özellikleri belirt.` 
         : `Bu mekana ${input.epoxyStyle} epoksi zemin uygulandığında nasıl görüneceğini kısaca ve Türkçe olarak açıkla. Maksimum 2 cümle, sadece görsel özellikleri belirt.`;
       
-      // Gemini models support image analysis but not image generation
-      // We'll use gemini-2.5-flash for image analysis and short Turkish description
+      // Burada görsel üretmiyoruz; sadece görsel + kısa TR açıklama üretiyoruz.
+      // Model seçimi (free tier dostu) tek yerden: DEFAULT_GOOGLEAI_MODEL
       const result = await ai.generate({
-        model: 'googleai/gemini-2.5-flash',
+        model: DEFAULT_GOOGLEAI_MODEL,
         prompt: [
           {media: {url: input.photoDataUri}},
           {text: promptText},
